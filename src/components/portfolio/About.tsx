@@ -3,10 +3,11 @@ import { Section } from "./Section";
 import { GraduationCap, Code2, LineChart, Rocket } from "lucide-react";
 
 const timeline = [
-  { year: "2023", icon: GraduationCap, title: "Started B.Tech CSE", body: "Began Computer Science Engineering with a focus on fundamentals — DSA, OS, DBMS." },
-  { year: "2024", icon: Code2, title: "Full-stack foundations", body: "Built first MERN apps. Got comfortable with React, Node.js, Express and MongoDB." },
-  { year: "2025", icon: LineChart, title: "Pivoted to Data", body: "Deep-dive into Python, Pandas, NumPy, Matplotlib. Shipped analytics dashboards." },
-  { year: "2026", icon: Rocket, title: "Aspiring Data Analyst", body: "Open to internships. Learning SQL at depth, intro ML and statistical modeling." },
+  { year: "2022", icon: GraduationCap, title: "Started B.Tech CSE", body: "Began my Computer Science journey and started exploring technology, programming fundamentals, and web development." },
+  { year: "2023", icon: Code2, title: "Web Development Exploration", body: "Learned modern web development with HTML, CSS, JavaScript, React, Vite, and Tailwind CSS. Explored deployment and development workflows while strengthening practical skills." },
+  { year: "2025", icon: LineChart, title: "DSA & Problem Solving", body: "Completed Data Structures and Algorithms in C++ from Coding Blocks, progressing from beginner to advanced level and earning a Certificate of Excellence with 92%." },
+  { year: "2025-2026", icon: Rocket, title: "Transition to Data Analytics", body: "Shifted my focus from web development to Data Analytics. Currently learning Python, SQL, Excel, Power BI, and data analysis while building projects and preparing for Data Analyst roles." },
+  { year: "Future", icon: Rocket, title: "Data Science & Machine Learning", body: "Planning to advance into Data Science, Machine Learning, and Deep Learning while continuing to strengthen my analytics and problem-solving skills." },
 ];
 
 export function About() {
