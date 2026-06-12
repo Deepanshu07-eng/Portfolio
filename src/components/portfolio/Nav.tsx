@@ -36,7 +36,7 @@ export function Nav() {
       >
         <a href="#top" className="flex items-center gap-2 font-display text-base font-semibold">
           <span className="inline-block h-2.5 w-2.5 rounded-full bg-primary glow" />
-          <span className="text-gradient">Portfolio.</span>
+          <span className="text-gradient">Deepanshu's PORTFOLIO</span>
         </a>
         <ul className="hidden items-center gap-1 md:flex">
           {links.map((l) => (

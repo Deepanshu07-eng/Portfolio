@@ -14,7 +14,7 @@ export function Hero() {
             className="glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs text-muted-foreground"
           >
             <Sparkles size={12} className="text-accent" />
-            Available for internships · Summer 2026
+            Open to Data Analyst Internships / Job
           </motion.div>
 
           <motion.h1
@@ -25,9 +25,9 @@ export function Hero() {
           >
             Turning <span className="text-gradient">Data</span> Into
             <br />
-            Insights & Ideas
+              Actionable
             <br />
-            Into <span className="text-gradient-accent">Solutions</span>
+<span className="text-gradient-accent">Insights</span>
           </motion.h1>
 
           <motion.p
@@ -36,8 +36,8 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg"
           >
-            B.Tech Computer Science Student · Aspiring Data Analyst · Python Enthusiast.
-            Building data-driven products and clean, performant interfaces.
+            B.Tech Computer Science Student passionate about Data Analytics, SQL, Python, and Dashboard Development. 
+            Transforming raw data into meaningful insights through analysis and visualization.
           </motion.p>
 
           <motion.div
@@ -74,11 +74,14 @@ export function Hero() {
             className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs uppercase tracking-widest text-muted-foreground"
           >
             <span>Python</span><span>·</span>
+            <span>SQL</span><span>·</span> 
             <span>Pandas</span><span>·</span>
             <span>NumPy</span><span>·</span>
-            <span>React</span><span>·</span>
-            <span>Node.js</span><span>·</span>
-            <span>MongoDB</span>
+            <span>Power BI</span><span>·</span>
+            <span>Excel</span><span>·</span>
+            <span>Streamlit</span><span>·</span>
+            <span>FastAPI</span>
+            
           </motion.div>
         </div>
 
@@ -100,7 +103,7 @@ export function Hero() {
             <div className="glass absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-xl px-4 py-3 text-xs">
               <div>
                 <div className="font-mono text-muted-foreground">Currently</div>
-                <div className="font-medium">Learning ML & SQL deep-dive</div>
+                <div className="font-medium">Building Data Analytics Projects & SQL deep-dive</div>
               </div>
               <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-accent shadow-[0_0_10px_var(--accent)]" />
             </div>

@@ -14,19 +14,17 @@ export function About() {
     <Section
       id="about"
       eyebrow="About"
-      title={<>A curious student turning <span className="text-gradient">curiosity into craft.</span></>}
-      subtitle="I'm a Computer Science undergrad who loves the intersection of code and data. I build clean web apps, then dig into the data they produce to find what's actually working."
+      title={<>Transforming <span className="text-gradient">Raw Data into Actionable Insights.</span></>}
+      subtitle="I'm a B.Tech Computer Science student focused on Data Analytics, SQL, Python, and Business Intelligence. I enjoy analyzing datasets, building dashboards, and transforming raw data into actionable insights that support better decision-making."
     >
       <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
         <div className="glass-strong rounded-2xl p-8">
           <h3 className="font-display text-xl font-semibold">My approach</h3>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            I treat every problem as a small experiment: form a hypothesis, build the simplest thing that
-            could prove it, measure honestly, then refine. The same loop works whether I'm shipping a
-            React component or analyzing a noisy dataset.
+            I enjoy solving problems through data. My approach starts with understanding the problem, collecting and cleaning data, exploring patterns, and presenting insights through visualizations and dashboards. I believe data becomes valuable only when it helps people make better decisions.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
-            {["Python", "NumPy", "Pandas", "Matplotlib", "HTML/CSS", "JavaScript", "Node.js", "Express", "MongoDB", "React"].map((t) => (
+            {["Python","SQL", "NumPy", "Pandas", "Matplotlib", "Power BI", "Excel", "Streamlit", "FAST API", "Data Visualization", "Git/ GitHub"].map((t) => (
               <div key={t} className="glass rounded-lg px-3 py-2 text-center font-mono text-xs">{t}</div>
             ))}
           </div>
