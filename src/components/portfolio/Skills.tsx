@@ -3,12 +3,12 @@ import { Section } from "./Section";
 import { BarChart3, Code, Layout, Server, Database, Wrench } from "lucide-react";
 
 const groups = [
-  { icon: BarChart3, title: "Data Analytics", items: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Excel"] },
-  { icon: Code, title: "Programming", items: ["Python", "JavaScript", "TypeScript", "C++"] },
-  { icon: Layout, title: "Frontend", items: ["React", "HTML5", "CSS3", "Tailwind", "Framer Motion"] },
-  { icon: Server, title: "Backend", items: ["Node.js", "Express.js", "REST APIs", "JWT Auth"] },
-  { icon: Database, title: "Databases", items: ["MongoDB", "MySQL", "PostgreSQL"] },
-  { icon: Wrench, title: "Tools", items: ["Git", "GitHub", "VS Code", "Jupyter", "Postman"] },
+  { icon: BarChart3, title: "Data Analytics", items: ["Pandas", "NumPy", "Matplotlib", "Data Cleaning", "Excel", "Power BI", "Statistics"] },
+  { icon: Code, title: "Programming Languages", items: ["Python", "C++", "JavaScript", ] },
+  { icon: Layout, title: "Frontend", items: ["React", "HTML5", "CSS3","Streamlit", "Tailwind"] },
+  { icon: Server, title: "Backend", items: ["Node.js", "Express.js","Fast APIs"] },
+  { icon: Database, title: "Databases", items: ["SQL", "MySQL", "MongoDB", "Database Design", "Queries"] },
+  { icon: Wrench, title: "Tools", items: ["Git", "GitHub", "VS Code", "Jupyter Notebook", "Postman"] },
 ];
 
 export function Skills() {
