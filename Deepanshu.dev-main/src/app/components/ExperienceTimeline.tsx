@@ -93,111 +93,87 @@ const ENTRIES: Entry[] = [
     id: "bmsce",
     track: "education",
     weight: "early",
-    role: "B.E. Mechanical Engineering",
-    company: "BMS College of Engineering",
-    period: "Aug 2019 – May 2023",
-    start: new Date(2019, 7),
-    end: new Date(2023, 4),
+    role: "B.Tech Computer Science",
+    company: "PDM Institute of Technology",
+    period: "2023 – 2026",
+    start: new Date(2023, 7),
+    end: new Date(2027, 4),
     bullets: [
-      "Founder & mentor - Augment.AI, BMSCE's AI club",
-      "Sponsorship Head, UTSAV '22 - signed MoUs • raised >50% of total budget in 14 days",
-      "IEEE Joint Secretary • 75+ events • chapter ranked #2 globally • co-founded CS chapter",
-      "Best Outgoing Project '23 - PINNs across fluid, structural & thermal simulation",
-      "Published: MCQ generation via graph + LLMs - NCISCT 2022",
+      "Building foundations in programming, DBMS, operating systems, computer networks, and software development",
+      "Focused on Data Analytics with a long-term goal of moving toward Data Science",
+      "Strengthening practical skills through projects, certifications, and hands-on learning",
     ],
   },
   {
     id: "outlawed",
     track: "professional",
     weight: "early",
-    role: "Graphic Designer",
-    company: "OutLawed",
-    period: "Jan 2020 – Oct 2022",
-    start: new Date(2020, 0),
-    end: new Date(2022, 9),
+    role: "Web Development Journey",
+    company: "Self Learning",
+    period: "2023– 2025",
+    start: new Date(2023, 0),
+    end: new Date(2024, 5),
     bullets: [
-      "Visual identity, event collateral & social content for a teaching NGO",
-      "First audience feedback loop - iteration under zero-budget constraints",
+      "Explored HTML, CSS, JavaScript, React, Vite, and Tailwind CSS",
+      "Built and customized portfolio-style projects to understand UI structure and components",
     ],
   },
   {
     id: "cellstrat",
     track: "professional",
-    weight: "early",
-    role: "AI Product Developer",
-    company: "CellStrat",
-    period: "Feb 2021 – Dec 2021",
-    start: new Date(2021, 1),
-    end: new Date(2021, 11),
-    bullets: [
-      "Early GPT-era enterprise ML - among first Indian teams shipping",
-      "NLP pipelines: document classification & processing for enterprise clients",
-      "Full lifecycle: curation → training → eval → deploy → client handoff",
-    ],
-  },
-  {
-    id: "iisc",
-    track: "professional",
-    weight: "early",
-    role: "Head of Machine Learning",
-    company: "IISc - NMCAD Lab",
-    period: "Jan 2022 – Sep 2022",
-    start: new Date(2022, 0),
-    end: new Date(2022, 8),
-    bullets: [
-      "eVTOL aerodynamic & structural optimisation under Prof. Harursampath",
-      "Physics-constrained surrogate ML to reduce FEM simulation cost • 5 projects across fluid, structural & thermal domains",
-      "Stable convergence with a fraction of the labelled data required by classical simulation",
-    ],
-  },
-  {
-    id: "gida",
-    track: "professional",
     weight: "mid",
-    role: "Data Scientist",
-    company: "Gida Technologies",
-    period: "Jan 2023 – May 2024",
-    start: new Date(2023, 0),
-    end: new Date(2024, 4),
+    role: "DSA & Problem Solving",
+    company: "Coding Blocks",
+    period: "2025",
+    start: new Date(2025, 0),
+    end: new Date(2025, 5),
     bullets: [
-      "Here.app (HDFC ERGO) - 163-lang multilingual RAG • 97% factual accuracy",
-      "Prismforce Skill Graph - +30% relevance • sub-50ms on NVIDIA T4",
-      "Laminar / Metamorph / Polymorph - AI CMS • no-code chatbots • cURL→20+ lang API",
+      "Solved 200+ Data Structures & Algorithms problems",
+      "Completed DSA in C++ with focus on logic building and optimization",
+      "Scored 92% and earned Certificate of Excellence",
+    ],
+  },
+  {
+  id: "gida",
+  track: "education",
+  weight: "recent",
+  role: "Data Analytics Foundation",
+  company: "Python • Pandas • Matplotlib",
+  period: "Oct 2025 – Dec 2025",
+start: new Date(2025, 9),
+end: new Date(2025, 11),
+  bullets: [
+  "Completed Python, NumPy, Pandas, and Matplotlib fundamentals",
+  "Built Netflix Data Analysis and Student Result Analysis projects",
+],
+},
+  {
+    id: "iiitb",
+    track: "education",
+    weight: "recent",
+    role: "Google Data Analytics",
+    company: "Coursera Professional Certificate",
+    period: "May 2026 – Aug 2026",
+start: new Date(2026, 4),
+end: new Date(2026, 7),
+    bullets: [
+      "Learning the data analysis process: ask, prepare, process, analyze, share, and act",
+      "Building understanding of spreadsheets, SQL, data cleaning, visualization, and case-study based analysis",
     ],
   },
   {
     id: "coforge",
     track: "professional",
     weight: "recent",
-    role: "AI Engineer",
-    company: "Coforge",
-    period: "Jun 2024 – Present",
-    start: new Date(2024, 5),
+    role: "Advanced SQL & FastAPI",
+    company: "Currently Learning",
+    period: "Aug 2026 – Present",
+    start: new Date(2026, 7),
     end: "present",
     bullets: [
-      "Conversational Analytics (HSBC) - SBC→STT→LLM on GCP/RHEL • authored LLD + orchestration architecture",
-      "GIL fix: CPU-pinned procs + asyncio/uvloop • 20→140–160 sessions/VM • 1,600+ concurrent",
-      "Packer GCE automation • GCP log correlator: 250K lines <5s • MTTR 1–2hr→~10min",
-      "Compute: $118K→$8K/month (~$1.3M/yr) • Azure infra intelligence • Amex GBT RAG",
-      "Best Team Award - HSBC Account",
-      "Pat on Back - Think Customer • individual delivery innovation & excellence",
-      "Keep It Up Award • ownership of professional growth & skill visibility",
-      "Java Spring AI trainer • 130+ participants • 81% voted-preferred • NPS +50",
-    ],
-  },
-  {
-    id: "iiitb",
-    track: "education",
-    weight: "mid",
-    role: "Executive Diploma, AI & ML",
-    company: "IIIT Bangalore",
-    period: "Oct 2025 – Mar 2027",
-    start: new Date(2025, 9),
-    end: new Date(2027, 2),
-    bullets: [
-      "Dual specialisation - MLOps, GenAI & Agentic AI",
-      "Concurrent with Coforge - formalising the theory behind production systems",
-      "Structural ML • probabilistic reasoning • optimisation • MLOps at scale",
+      "Currently advancing SQL skills through practical database challenges and query-based exercises",
+      "Learning FastAPI to build backend APIs for data-driven applications",
+      "Preparing to explore Power BI more deeply for dashboards and business intelligence projects",
     ],
   },
 ];
@@ -205,10 +181,10 @@ const ENTRIES: Entry[] = [
 const PRO = ENTRIES.filter((e) => e.track === "professional");
 const EDU = ENTRIES.filter((e) => e.track === "education");
 
-const ORIGIN = new Date(2019, 0, 1);
+const ORIGIN = new Date(2023, 0, 1);
 const AXIS_END = new Date(2027, 6, 1);
 const TODAY = new Date(2026, 4, 1);
-const YEAR_MARKS = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027];
+const YEAR_MARKS = [2023, 2024, 2025, 2026, 2027];
 
 function toMonths(d: Date): number {
   return (
@@ -248,7 +224,7 @@ const CHART_PAD_T = 60;
 const CHART_PAD_B = 80;
 const CHART_EDGE_L = 40;
 const CHART_EDGE_R = 40;
-const CHART_MULT_V = 2.8;
+const CHART_MULT_V = 1.5;
 const SPINE_RATIO = 0.5;
 const PRO_SPINE_X_GAP = 40; // zone on spine side for year labels
 const EDU_SPINE_X_GAP = 40;
@@ -274,7 +250,7 @@ const MOBILE_CARD_MARGIN_R = 8;
 const MOBILE_HEADER_H = 140;
 
 function buildMobileDims(vpW: number, vpH: number) {
-  const chartH = Math.max(vpH * CHART_MULT_V, 2400);
+  const chartH = Math.max(vpH * CHART_MULT_V, 1500);
   const monthPx = (chartH - CHART_PAD_T - CHART_PAD_B) / TOTAL_MONTHS;
   const STRIP_H = vpH - MOBILE_HEADER_H;
   const SPINE_X = MOBILE_SPINE_X_PX;
@@ -1290,7 +1266,7 @@ export function ExperienceTimeline() {
                 textTransform: "uppercase",
               }}
             >
-              Experience & Education
+              LEARNING TIMELINE
             </span>
             <div
               style={{
@@ -1311,7 +1287,7 @@ export function ExperienceTimeline() {
               margin: 0,
             }}
           >
-            The trajectory.
+            Growth Through Practice.
           </h2>
         </div>
 

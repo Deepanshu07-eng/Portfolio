@@ -3,7 +3,7 @@ import { AnimatePresence, m } from "motion/react";
 import { useRef, useCallback, useState, useEffect } from "react";
 import { useIsMobile, useIsTouchDevice } from "../../hooks/useMediaQuery";
 import { scrollToSection } from "../../hooks/useHashScroll";
-import profilePicture from "../../assets/profilePicture.jpeg?url";
+import profilePicture from "../../assets/profilePicture.png?url";
 // @ts-ignore
 import resumeUrl from "../../assets/Deepanshu_Data_Analyst_resume.pdf?url";
 
