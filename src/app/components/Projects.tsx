@@ -13,26 +13,36 @@ type SubProject = {
   github?: string;
 };
 
-type Project = {
+export type Project = {
   index: string;
+  slug: string;
   title: string;
   category: string;
+  company: string;
   status: string;
+  devStatus: "completed" | "in-progress";
   color: string;
   tags: string[];
   summary: string;
   details: string[];
+  bullets: string[];
+  impact: string;
+  logo?: string;
+  logoHeight?: number;
   liveUrl?: string;
   github?: string;
   subProjects?: SubProject[];
 };
 
-const projects: Project[] = [
+export const projects: Project[] = [
   {
     index: "01",
+    slug: "bus-route-optimization",
     title: "School / College Bus & Van Route Optimization",
     category: "Major Project",
+    company: "Academic Project",
     status: "Featured",
+    devStatus: "in-progress",
     color: "#22d3ee",
     tags: ["Python", "SQL", "Route Optimization", "Maps", "Dashboard"],
     summary:
@@ -43,13 +53,23 @@ const projects: Project[] = [
       "Includes attendance tracking and route reporting.",
       "Designed for admin dashboard and future maps integration.",
     ],
+    bullets: [
+      "Manages student pickup points and vehicle routes.",
+      "Optimizes routes using graph-based logic.",
+      "Includes attendance tracking and route reporting.",
+      "Designed for admin dashboard and future maps integration.",
+    ],
+    impact: "Improves transport planning by reducing route confusion, travel time, and fuel usage.",
     github: "https://github.com/Deepanshu07-eng",
   },
   {
     index: "02",
+    slug: "netflix-visualization",
     title: "Real Life Netflix Visualization Project",
     category: "Data Analytics",
+    company: "Portfolio Project",
     status: "Completed",
+    devStatus: "completed",
     color: "#ef4444",
     tags: ["Python", "Pandas", "Matplotlib", "EDA"],
     summary:
@@ -60,14 +80,24 @@ const projects: Project[] = [
       "Explored content type, release year, country, and rating patterns.",
       "Best suited as a beginner-friendly Data Analyst portfolio project.",
     ],
+    bullets: [
+      "Cleaned and analyzed Netflix dataset using Pandas.",
+      "Created visual insights using Matplotlib.",
+      "Explored content type, release year, country, and rating patterns.",
+      "Best suited as a beginner-friendly Data Analyst portfolio project.",
+    ],
+    impact: "Shows practical data cleaning, analysis, and visualization skills.",
     github:
       "https://github.com/Deepanshu07-eng/Python/tree/main/Real%20Life%20NetfliX%20Visualisation%20Project%20(Pandas%2C%20matplotlib)",
   },
   {
     index: "03",
+    slug: "air-quality-prediction",
     title: "Air Quality Prediction ML",
     category: "Machine Learning",
+    company: "Portfolio Project",
     status: "Completed",
+    devStatus: "completed",
     color: "#4ade80",
     tags: ["Python", "ML", "Prediction", "Data Cleaning"],
     summary:
@@ -78,12 +108,22 @@ const projects: Project[] = [
       "Focused on practical ML workflow from data preprocessing to output.",
       "Useful for showing beginner ML and data science skills.",
     ],
+    bullets: [
+      "Prepared and cleaned air quality dataset.",
+      "Applied machine learning models for prediction.",
+      "Focused on practical ML workflow from data preprocessing to output.",
+      "Useful for showing beginner ML and data science skills.",
+    ],
+    impact: "Demonstrates beginner machine learning workflow and prediction logic.",
   },
   {
     index: "04",
+    slug: "capstone-project",
     title: "Capstone Project",
     category: "Data Project",
+    company: "Portfolio Project",
     status: "Completed",
+    devStatus: "completed",
     color: "#a78bfa",
     tags: ["Analytics", "Python", "Visualization", "Report"],
     summary:
@@ -93,12 +133,21 @@ const projects: Project[] = [
       "Structured like a complete portfolio-ready project.",
       "Shows ability to work through an end-to-end data problem.",
     ],
+    bullets: [
+      "Includes data understanding, cleaning, analysis, and insights.",
+      "Structured like a complete portfolio-ready project.",
+      "Shows ability to work through an end-to-end data problem.",
+    ],
+    impact: "Represents a complete end-to-end data project workflow.",
   },
   {
     index: "05",
+    slug: "password-manager",
     title: "Password Manager Program",
     category: "Python CLI",
+    company: "Python Project",
     status: "Completed",
+    devStatus: "completed",
     color: "#facc15",
     tags: ["Python", "CLI", "JSON", "File Handling"],
     summary:
@@ -109,12 +158,22 @@ const projects: Project[] = [
       "Improved with exception handling and reusable functions.",
       "Good project for Python fundamentals and CLI logic.",
     ],
+    bullets: [
+      "Stores password records using file handling.",
+      "Includes password generation and search features.",
+      "Improved with exception handling and reusable functions.",
+      "Good project for Python fundamentals and CLI logic.",
+    ],
+    impact: "Shows Python fundamentals, file handling, and CLI logic.",
   },
   {
     index: "06",
+    slug: "python-small-projects",
     title: "01 Python Small Projects",
     category: "Python Projects",
+    company: "Practice Collection",
     status: "Collection",
+    devStatus: "completed",
     color: "#38bdf8",
     tags: ["Python", "Beginner", "Logic Building"],
     summary:
@@ -123,6 +182,11 @@ const projects: Project[] = [
       "Beginner-friendly Python practice projects.",
       "Focused on conditions, loops, functions, and input handling.",
     ],
+    bullets: [
+      "Beginner-friendly Python practice projects.",
+      "Focused on conditions, loops, functions, and input handling.",
+    ],
+    impact: "Builds core Python logic and problem-solving basics.",
     subProjects: [
       { title: "Guess the Correct Number using Python", status: "Completed" },
       { title: "Rock, Paper, Scissors using Python", status: "Completed" },
@@ -130,9 +194,12 @@ const projects: Project[] = [
   },
   {
     index: "07",
+    slug: "web-development-projects",
     title: "Web Development Projects",
     category: "Frontend Collection",
+    company: "Practice Collection",
     status: "Collection",
+    devStatus: "completed",
     color: "#fb7185",
     tags: ["HTML", "CSS", "JavaScript", "Frontend"],
     summary:
@@ -142,6 +209,12 @@ const projects: Project[] = [
       "Some projects can be deployed as live demos.",
       "Useful for showing frontend basics and layout practice.",
     ],
+    bullets: [
+      "Includes multiple frontend UI clone projects.",
+      "Some projects can be deployed as live demos.",
+      "Useful for showing frontend basics and layout practice.",
+    ],
+    impact: "Shows frontend layout practice and basic web development skills.",
     subProjects: [
       { title: "Amazon Clone", status: "Deployable" },
       { title: "Login Signup Page", status: "Deployable" },
@@ -151,6 +224,10 @@ const projects: Project[] = [
     ],
   },
 ];
+
+export function renderBullet(text: string) {
+  return text;
+}
 
 function ProjectModal({
   project,
@@ -380,17 +457,6 @@ function ProjectCard({
           : "none",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `radial-gradient(circle at top right, ${project.color}22, transparent 42%)`,
-          opacity: hovered ? 1 : 0.25,
-          transition: "opacity 0.3s",
-          pointerEvents: "none",
-        }}
-      />
-
       <div style={{ position: "relative", zIndex: 1 }}>
         <div
           style={{
@@ -578,7 +644,7 @@ export function Projects() {
         >
           {projects.map((project) => (
             <ProjectCard
-              key={project.title}
+              key={project.slug}
               project={project}
               onOpen={setSelected}
             />

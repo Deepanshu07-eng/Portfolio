@@ -38,39 +38,28 @@ export function ProjectPage({
     );
   }
 
-  const isAward = p.status === "Best Outgoing Project • 2022–23";
-  const statusColor = isAward
-    ? "#facc15"
-    : p.status === "Client Delivery"
-      ? "#22d3ee"
-      : p.devStatus === "completed"
-        ? "#4ade80"
-        : "#facc15";
-  const statusBorder = isAward
-    ? "rgba(250,204,21,0.35)"
-    : p.status === "Client Delivery"
-      ? "rgba(34,211,238,0.4)"
-      : p.devStatus === "completed"
-        ? "rgba(74,222,128,0.35)"
-        : "rgba(250,204,21,0.35)";
-  const statusBg = isAward
-    ? "rgba(250,204,21,0.06)"
-    : p.status === "Client Delivery"
-      ? "rgba(34,211,238,0.08)"
-      : p.devStatus === "completed"
-        ? "rgba(74,222,128,0.06)"
-        : "rgba(250,204,21,0.06)";
+  const statusColor =
+    p.devStatus === "completed" ? "#4ade80" : "#facc15";
+
+  const statusBorder =
+    p.devStatus === "completed"
+      ? "rgba(74,222,128,0.35)"
+      : "rgba(250,204,21,0.35)";
+
+  const statusBg =
+    p.devStatus === "completed"
+      ? "rgba(74,222,128,0.06)"
+      : "rgba(250,204,21,0.06)";
 
   return (
     <div
       style={{
         minHeight: "100vh",
-        width: "max(320px, 60vw)",
+        width: "min(92vw, 900px)",
         margin: "0 auto",
         padding: "7rem 0 8rem",
       }}
     >
-      {/* Back */}
       <m.a
         href={backHref}
         initial={{ opacity: 0, x: -8 }}
@@ -89,19 +78,10 @@ export function ProjectPage({
           marginBottom: isMobile ? "2.5rem" : "3.5rem",
           transition: "color 0.2s",
         }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.color =
-            "rgba(255,255,255,0.9)";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.color =
-            "rgba(255,255,255,0.35)";
-        }}
       >
         ← Back to {backSection}
       </m.a>
 
-      {/* Header */}
       <m.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -113,7 +93,6 @@ export function ProjectPage({
           marginBottom: "3rem",
         }}
       >
-        {/* Status badge */}
         <div>
           <span
             style={{
@@ -129,11 +108,9 @@ export function ProjectPage({
             }}
           >
             {p.status}
-            {isAward && " 🏆"}
           </span>
         </div>
 
-        {/* Title */}
         <h1
           style={{
             fontFamily: FONT_SERIF,
@@ -150,39 +127,18 @@ export function ProjectPage({
           {p.title}
         </h1>
 
-        {/* Company */}
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <img
-            src={p.logo}
-            alt={p.company}
-            loading="lazy"
-            decoding="async"
-            style={{
-              height: `${p.logoHeight}px`,
-              width: "auto",
-              maxWidth: "72px",
-              objectFit: "contain",
-              borderRadius: "3px",
-              opacity: 0.85,
-            }}
-            onError={(e) =>
-              ((e.currentTarget as HTMLImageElement).style.display = "none")
-            }
-          />
-          <span
-            style={{
-              fontFamily: FONT_MONO,
-              fontSize: "0.65rem",
-              letterSpacing: "0.09em",
-              color: "rgba(255,255,255,0.4)",
-            }}
-          >
-            {p.company}
-          </span>
-        </div>
+        <span
+          style={{
+            fontFamily: FONT_MONO,
+            fontSize: "0.65rem",
+            letterSpacing: "0.09em",
+            color: "rgba(255,255,255,0.4)",
+          }}
+        >
+          {p.company}
+        </span>
       </m.div>
 
-      {/* Divider */}
       <div
         style={{
           height: "1px",
@@ -191,7 +147,6 @@ export function ProjectPage({
         }}
       />
 
-      {/* Full bullets */}
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -199,13 +154,12 @@ export function ProjectPage({
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "0",
           marginBottom: "3rem",
         }}
       >
         {p.bullets.map((b, i) => (
           <m.div
-            key={i}
+            key={`${b}-${i}`}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 + i * 0.07, duration: 0.35 }}
@@ -220,11 +174,10 @@ export function ProjectPage({
                   : "none",
             }}
           >
-            <span
-              style={{ fontSize: "0.95rem", flexShrink: 0, marginTop: "2px" }}
-            >
+            <span style={{ fontSize: "0.95rem", flexShrink: 0 }}>
               {BULLET_ICONS[i] ?? "▸"}
             </span>
+
             <span
               style={{
                 fontFamily: FONT_SANS,
@@ -232,7 +185,6 @@ export function ProjectPage({
                 lineHeight: 1.8,
                 color: "rgba(255,255,255,0.65)",
                 textAlign: "justify",
-                textJustify: "inter-word",
               }}
             >
               {renderBullet(b)}
@@ -241,7 +193,6 @@ export function ProjectPage({
         ))}
       </m.div>
 
-      {/* Impact */}
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -250,7 +201,6 @@ export function ProjectPage({
           fontFamily: FONT_MONO,
           fontSize: "0.65rem",
           color: "#e8e0d0",
-          letterSpacing: "0.02em",
           background: "rgba(232,224,208,0.07)",
           border: "1px solid rgba(232,224,208,0.15)",
           borderRadius: "4px",
@@ -262,11 +212,7 @@ export function ProjectPage({
         ↳ {p.impact}
       </m.div>
 
-      {/* Tags */}
-      <m.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.55, duration: 0.35 }}
+      <div
         style={{
           display: "flex",
           gap: "6px",
@@ -290,9 +236,8 @@ export function ProjectPage({
             {t}
           </span>
         ))}
-      </m.div>
+      </div>
 
-      {/* GitHub link */}
       {p.github && (
         <m.a
           href={p.github}
@@ -313,18 +258,6 @@ export function ProjectPage({
             border: "1px solid rgba(255,255,255,0.12)",
             borderRadius: "6px",
             padding: "11px 16px",
-            transition: "border-color 0.2s, color 0.2s",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor =
-              "rgba(255,255,255,0.3)";
-            (e.currentTarget as HTMLElement).style.color = "#fafaf8";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor =
-              "rgba(255,255,255,0.12)";
-            (e.currentTarget as HTMLElement).style.color =
-              "rgba(255,255,255,0.45)";
           }}
         >
           <ArrowUpRight size={13} />
