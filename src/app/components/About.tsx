@@ -147,7 +147,7 @@ export function About() {
                 margin: 0,
               }}
             >
-              Data is Hard. Finding the story isn't.
+              Data is Hard. Finding the story isn'tttttttt.
             </m.h2>
           </div>
         </div>
