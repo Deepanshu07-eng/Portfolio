@@ -59,13 +59,35 @@ export function Hero() {
   }, []);
 
   const copyEmailToClipboard = useCallback(async () => {
-    try {
-      await globalThis.navigator.clipboard.writeText(CONTACT_EMAIL);
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
       showToast("Email copied to clipboard!");
-    } catch {
-      showToast("Could not copy email", 1800);
+    } else {
+      // Fallback for unsupported browsers
+      const textArea = document.createElement("textarea");
+      textArea.value = CONTACT_EMAIL;
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      const successful = document.execCommand("copy");
+      document.body.removeChild(textArea);
+
+      if (successful) {
+        showToast("Email copied to clipboard!");
+      } else {
+        throw new Error();
+      }
     }
-  }, [showToast]);
+  } catch {
+    // Final fallback
+    window.location.href = `mailto:${CONTACT_EMAIL}`;
+    showToast("Opening email client...");
+  }
+}, [showToast]);
 
   const handleResumeDownload = useCallback(() => {
     showToast("Resume downloaded!");
@@ -651,7 +673,7 @@ export function Hero() {
               <span
                 style={{
                   fontFamily: '"DM Mono", monospace',
-                  fontSize: isMobile ? "0.6rem" : "0.7rem",
+                  fontSize: isMobile ? "0.6rem" : "1rem",
                   letterSpacing: "0.12em",
                   color: "#e8e0d0",
                 }}

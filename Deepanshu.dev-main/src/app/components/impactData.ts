@@ -1,36 +1,38 @@
 // Machine-readable impact catalog driving the Impact constellation.
 // Human source of truth: /IMPACT.md. Keep the two in sync.
 
+// Machine-readable portfolio catalog driving the Impact constellation.
+
 export type ImpactCategory =
-  | "scale"
-  | "cost"
-  | "reliability"
-  | "accuracy"
-  | "reach"
-  | "systems"
-  | "research";
+  | "programming"
+  | "analytics"
+  | "backend"
+  | "projects"
+  | "learning"
+  | "problemSolving"
+  | "achievements";
 
 export const CATEGORY_META: Record<
   ImpactCategory,
   { label: string; color: string }
 > = {
-  scale: { label: "Scale & Performance", color: "#22d3ee" },
-  cost: { label: "Cost & Efficiency", color: "#10b981" },
-  reliability: { label: "Reliability & Ops", color: "#a78bfa" },
-  accuracy: { label: "Accuracy & Quality", color: "#eab308" },
-  reach: { label: "Reach & Languages", color: "#60a5fa" },
-  systems: { label: "Systems Breadth", color: "#2dd4bf" },
-  research: { label: "Research & Publications", color: "#f5ca40" },
+  programming: { label: "Programming", color: "#22d3ee" },
+  analytics: { label: "Data Analytics", color: "#10b981" },
+  backend: { label: "Backend & Apps", color: "#a78bfa" },
+  projects: { label: "Projects", color: "#eab308" },
+  learning: { label: "Current Focus", color: "#60a5fa" },
+  problemSolving: { label: "Problem Solving", color: "#2dd4bf" },
+  achievements: { label: "Milestones", color: "#f5ca40" },
 };
 
 export const CATEGORY_ORDER: ImpactCategory[] = [
-  "scale",
-  "cost",
-  "reliability",
-  "accuracy",
-  "reach",
-  "systems",
-  "research",
+  "programming",
+  "analytics",
+  "backend",
+  "projects",
+  "learning",
+  "problemSolving",
+  "achievements",
 ];
 
 export type Impact = {
@@ -42,433 +44,228 @@ export type Impact = {
   href?: string;
 };
 
-// Per-project context (client + one-line description), keyed by `item`.
-// Source: /IMPACT.md § "Per-item detail". Shown in the focus readout.
 export const ITEM_META: Record<string, { client: string; context: string }> = {
-  "HSBC Conversational Analytics": {
-    client: "Coforge",
-    context:
-      "GIL-bound voice pipeline re-architected with CPU-pinned processes + asyncio/uvloop.",
+  Python: {
+    client: "Programming",
+    context: "Primary language for data analysis, scripting, and backend development.",
   },
-  "Skill Recommendation Engine": {
-    client: "Prismforce",
-    context:
-      "Real-time skill recommender; eliminated batch retraining on taxonomy expansion.",
+  SQL: {
+    client: "Database",
+    context: "Completed SQL fundamentals and currently advancing toward complex queries and analytics use cases.",
   },
-  "ashwingupta.dev": {
-    client: "Personal",
-    context: "This site - design handoff hardened to production performance.",
+  FastAPI: {
+    client: "Backend",
+    context: "Learning FastAPI to build scalable backend APIs for data-driven applications.",
   },
-  "Azure Infra Docs Engine": {
-    client: "Coforge",
-    context: "Guardrail-enforced automated Azure infrastructure documentation.",
+  Streamlit: {
+    client: "Data Apps",
+    context: "Learned Streamlit for building interactive data applications and dashboards.",
   },
-  ScholarOS: {
-    client: "Personal · In dev",
-    context:
-      "Deterministic structured research execution; only hypothesis critique is agentic.",
+  "Netflix Analysis": {
+    client: "Project",
+    context: "Exploratory data analysis project using Python, Pandas, and Matplotlib.",
   },
-  PageIndexOllama: {
-    client: "Open source",
-    context: "Local-first tree-RAG fork across Ollama, llama.cpp, vLLM.",
+  "Student Result Analysis": {
+    client: "Project",
+    context: "Student performance analysis project using Python and data visualization.",
   },
-  "Here.app": {
-    client: "HDFC ERGO",
-    context: "Multilingual vehicle-intelligence RAG with QA-gated retrieval.",
+  "Bus Route Optimizer": {
+    client: "Major Project",
+    context: "Smart school/college bus route optimization project using Python, SQL, and FastAPI.",
   },
-  "Airline Contract Intelligence": {
-    client: "Amex GBT",
-    context:
-      "Carrier-contract table extraction across image + programmatic PDFs.",
+  "Google Data Analytics": {
+    client: "Certification",
+    context: "Professional certificate journey focused on analytics workflow, SQL, spreadsheets, and visualization.",
   },
-  "Laminar (toolchain)": {
-    client: "Gida",
-    context:
-      "AI delivery toolchain - multilingual content generation at scale.",
+  "Coding Blocks DSA": {
+    client: "Problem Solving",
+    context: "Solved 200+ DSA problems and completed C++ DSA with 92% Certificate of Excellence.",
   },
-  "Polymorph (toolchain)": {
-    client: "Gida",
-    context: "cURL→code API conversion across 20+ languages.",
+  PowerBI: {
+    client: "Business Intelligence",
+    context: "Next focus area for building interactive dashboards and business insights.",
   },
-  controla: {
-    client: "Personal",
-    context:
-      "Local-first self-improving inference OS; control plane over 19 backends.",
-  },
-  PINNs: {
-    client: "BMSCE · CellStrat",
-    context:
-      "Dual-loss physics-informed NN framework across fluid, structural, thermal domains.",
-  },
-  "PINNs white paper": {
-    client: "CellStrat",
-    context:
-      "Published white paper - PINNs for enterprise cyber-physical systems.",
-  },
-  "NCISCT 2022": {
-    client: "IJISET",
-    context:
-      "Peer-reviewed automated assessment generation (BERT + WordNet/ConceptNet).",
-  },
-  "Open data": {
-    client: "Kaggle",
-    context: "Human Faces dataset - widely downloaded open dataset.",
-  },
-  Training: {
-    client: "Coforge",
-    context: "Java Spring AI trainer cohort; 81% voted preferred.",
-  },
-  "Research arc": {
-    client: "IISc",
-    context: "ML lead on physics-constrained eVTOL research.",
+  GitHub: {
+    client: "Portfolio",
+    context: "Projects and learning work organized through GitHub repositories.",
   },
 };
 
 export const impacts: Impact[] = [
-  // ── Scale & Performance ──
   {
-    value: "7×",
-    label: "per-VM session capacity (20 → 140–160)",
-    item: "HSBC Conversational Analytics",
-    category: "scale",
+    value: "Python",
+    label: "core programming language",
+    item: "Python",
+    category: "programming",
     magnitude: 5,
-    href: "/work/hsbc",
   },
   {
-    value: "1,600+",
-    label: "concurrent voice sessions at peak",
-    item: "HSBC Conversational Analytics",
-    category: "scale",
+    value: "C++",
+    label: "problem-solving language",
+    item: "Coding Blocks DSA",
+    category: "programming",
+    magnitude: 4,
+  },
+  {
+    value: "SQL",
+    label: "database querying and analysis",
+    item: "SQL",
+    category: "programming",
     magnitude: 5,
-    href: "/work/hsbc",
   },
   {
-    value: "2,000",
-    label: "users validated via SIPp load test",
-    item: "HSBC Conversational Analytics",
-    category: "scale",
-    magnitude: 3,
-    href: "/work/hsbc",
-  },
-  {
-    value: "<300ms",
-    label: "end-to-end latency held at peak",
-    item: "HSBC Conversational Analytics",
-    category: "scale",
-    magnitude: 4,
-    href: "/work/hsbc",
-  },
-  {
-    value: "<5%",
-    label: "packet loss at 1,600+ sessions",
-    item: "HSBC Conversational Analytics",
-    category: "scale",
-    magnitude: 2,
-    href: "/work/hsbc",
-  },
-  {
-    value: "<50ms",
-    label: "recommendation inference (99th pct)",
-    item: "Skill Recommendation Engine",
-    category: "scale",
-    magnitude: 4,
-    href: "/work/skill-recommendation-engine",
-  },
-  {
-    value: "1× T4",
-    label: "full production load, single GPU",
-    item: "Skill Recommendation Engine",
-    category: "scale",
-    magnitude: 3,
-    href: "/work/skill-recommendation-engine",
-  },
-  {
-    value: "18→4ms",
-    label: "canvas frame time (18–25 → 4–6ms)",
-    item: "ashwingupta.dev",
-    category: "scale",
-    magnitude: 3,
-    href: "/work/ashwingupta-dev",
-  },
-  {
-    value: "60 FPS",
-    label: "stable under CPU throttle",
-    item: "ashwingupta.dev",
-    category: "scale",
-    magnitude: 2,
-    href: "/work/ashwingupta-dev",
-  },
-
-  // ── Cost & Efficiency ──
-  {
-    value: "~$1.3M",
-    label: "annualized compute savings",
-    item: "HSBC Conversational Analytics",
-    category: "cost",
+    value: "Pandas",
+    label: "data cleaning and analysis",
+    item: "Netflix Analysis",
+    category: "analytics",
     magnitude: 5,
-    href: "/work/hsbc",
   },
   {
-    value: "$118K→$8K",
-    label: "monthly compute cost",
-    item: "HSBC Conversational Analytics",
-    category: "cost",
+    value: "NumPy",
+    label: "numerical computing",
+    item: "Netflix Analysis",
+    category: "analytics",
+    magnitude: 4,
+  },
+  {
+    value: "Matplotlib",
+    label: "data visualization",
+    item: "Netflix Analysis",
+    category: "analytics",
+    magnitude: 4,
+  },
+  {
+    value: "Excel",
+    label: "spreadsheet analysis",
+    item: "Google Data Analytics",
+    category: "analytics",
+    magnitude: 3,
+  },
+  {
+    value: "Power BI",
+    label: "next dashboard focus",
+    item: "PowerBI",
+    category: "analytics",
+    magnitude: 3,
+  },
+  {
+    value: "FastAPI",
+    label: "backend APIs in progress",
+    item: "FastAPI",
+    category: "backend",
+    magnitude: 4,
+  },
+  {
+    value: "Streamlit",
+    label: "interactive data apps",
+    item: "Streamlit",
+    category: "backend",
+    magnitude: 4,
+  },
+  {
+    value: "Git",
+    label: "version control",
+    item: "GitHub",
+    category: "backend",
+    magnitude: 3,
+  },
+  {
+    value: "GitHub",
+    label: "project publishing",
+    item: "GitHub",
+    category: "backend",
+    magnitude: 3,
+  },
+  {
+    value: "Netflix",
+    label: "real-world EDA project",
+    item: "Netflix Analysis",
+    category: "projects",
     magnitude: 5,
-    href: "/work/hsbc",
+    href: "https://github.com/Deepanshu07-eng/Python/tree/main/Real%20Life%20NetfliX%20Visualisation%20Project%20(Pandas%2C%20matplotlib)",
   },
   {
-    value: "80→15",
-    label: "production VMs (32 → 8 vCPU)",
-    item: "HSBC Conversational Analytics",
-    category: "cost",
-    magnitude: 3,
-    href: "/work/hsbc",
-  },
-  {
-    value: "days→hrs",
-    label: "infra docs: 2–3 days → 2–3 hours",
-    item: "Azure Infra Docs Engine",
-    category: "cost",
+    value: "Student",
+    label: "result analysis project",
+    item: "Student Result Analysis",
+    category: "projects",
     magnitude: 4,
-    href: "/work/azure-infra-docs",
   },
   {
-    value: "90%",
-    label: "image weight cut (2 MB → 211 KB)",
-    item: "ashwingupta.dev",
-    category: "cost",
-    magnitude: 3,
-    href: "/work/ashwingupta-dev",
-  },
-  {
-    value: "72%",
-    label: "JS bundle cut",
-    item: "ashwingupta.dev",
-    category: "cost",
-    magnitude: 3,
-    href: "/work/ashwingupta-dev",
-  },
-  {
-    value: "400→0",
-    label: "CSS-animated DOM nodes eliminated",
-    item: "ashwingupta.dev",
-    category: "cost",
-    magnitude: 2,
-    href: "/work/ashwingupta-dev",
-  },
-
-  // ── Reliability & Ops ──
-  {
-    value: "2hr→10m",
-    label: "incident MTTR",
-    item: "HSBC Conversational Analytics",
-    category: "reliability",
-    magnitude: 4,
-    href: "/work/hsbc",
-  },
-  {
-    value: "15→3m",
-    label: "post-call documentation time",
-    item: "HSBC Conversational Analytics",
-    category: "reliability",
-    magnitude: 3,
-    href: "/work/hsbc",
-  },
-  {
-    value: "250K+",
-    label: "log lines correlated in 5–6 min",
-    item: "HSBC Conversational Analytics",
-    category: "reliability",
-    magnitude: 3,
-    href: "/work/hsbc",
-  },
-  {
-    value: "0",
-    label: "fabricated components (guardrail)",
-    item: "Azure Infra Docs Engine",
-    category: "reliability",
-    magnitude: 3,
-    href: "/work/azure-infra-docs",
-  },
-  {
-    value: "100%",
-    label: "determinism rate",
-    item: "ScholarOS",
-    category: "reliability",
-    magnitude: 4,
-    href: "/research/scholaros",
-  },
-  {
-    value: "0 keys",
-    label: "fully offline / air-gapped",
-    item: "PageIndexOllama",
-    category: "reliability",
-    magnitude: 3,
-    href: "/work/pageindexollama",
-  },
-
-  // ── Accuracy & Quality ──
-  {
-    value: "~97%",
-    label: "factual accuracy, vehicle spec queries",
-    item: "Here.app",
-    category: "accuracy",
+    value: "Bus Route",
+    label: "major project in progress",
+    item: "Bus Route Optimizer",
+    category: "projects",
     magnitude: 5,
-    href: "/work/here-app",
   },
   {
-    value: "~96%",
-    label: "table extraction across carrier PDFs",
-    item: "Airline Contract Intelligence",
-    category: "accuracy",
+    value: "SQL+API",
+    label: "major project stack",
+    item: "Bus Route Optimizer",
+    category: "projects",
     magnitude: 4,
   },
   {
-    value: "6/6",
-    label: "physics benchmarks, stable convergence",
-    item: "PINNs",
-    category: "accuracy",
-    magnitude: 3,
-    href: "/research/pinns",
-  },
-  {
-    value: "+30%",
-    label: "recommendation relevance",
-    item: "Skill Recommendation Engine",
-    category: "accuracy",
-    magnitude: 3,
-    href: "/work/skill-recommendation-engine",
-  },
-
-  // ── Reach & Languages ──
-  {
-    value: "163",
-    label: "languages, first-class RAG targets",
-    item: "Here.app",
-    category: "reach",
+    value: "Adv SQL",
+    label: "currently advancing",
+    item: "SQL",
+    category: "learning",
     magnitude: 5,
-    href: "/work/here-app",
   },
   {
-    value: "163+",
-    label: "languages for content generation",
-    item: "Laminar (toolchain)",
-    category: "reach",
-    magnitude: 3,
-  },
-  {
-    value: "20+",
-    label: "languages, cURL→code conversion",
-    item: "Polymorph (toolchain)",
-    category: "reach",
-    magnitude: 2,
-  },
-  {
-    value: "42.8K",
-    label: "downloads, Human Faces Kaggle set (202K views)",
-    item: "Open data",
-    category: "reach",
-    magnitude: 3,
-    href: "/about",
-  },
-  {
-    value: "NPS +50",
-    label: "Java Spring AI trainer, 130+ trained",
-    item: "Training",
-    category: "reach",
-    magnitude: 3,
-    href: "/about",
-  },
-
-  // ── Systems Breadth ──
-  {
-    value: "19",
-    label: "inference backends under one API",
-    item: "controla",
-    category: "systems",
+    value: "FastAPI",
+    label: "currently learning",
+    item: "FastAPI",
+    category: "learning",
     magnitude: 4,
-    href: "/research/controla",
   },
   {
-    value: "7",
-    label: "modalities, single control plane",
-    item: "controla",
-    category: "systems",
+    value: "Power BI",
+    label: "next exploration area",
+    item: "PowerBI",
+    category: "learning",
     magnitude: 3,
-    href: "/research/controla",
   },
   {
-    value: "6",
-    label: "scoring dimensions per routing decision",
-    item: "controla",
-    category: "systems",
-    magnitude: 2,
-    href: "/research/controla",
-  },
-  {
-    value: "5 · 9",
-    label: "capabilities · deterministic services",
-    item: "ScholarOS",
-    category: "systems",
-    magnitude: 3,
-    href: "/research/scholaros",
-  },
-  {
-    value: "5,479",
-    label: "chunks processed (Mar 2026 validation)",
-    item: "ScholarOS",
-    category: "systems",
-    magnitude: 2,
-    href: "/research/scholaros",
-  },
-  {
-    value: "76",
-    label: "contradictions detected in corpus",
-    item: "ScholarOS",
-    category: "systems",
-    magnitude: 2,
-    href: "/research/scholaros",
-  },
-
-  // ── Research & Publications ──
-  {
-    value: "IJISET",
-    label: "peer-reviewed paper, Vol. 9 (NCISCT 2022)",
-    item: "NCISCT 2022",
-    category: "research",
+    value: "GDA",
+    label: "Google Data Analytics journey",
+    item: "Google Data Analytics",
+    category: "learning",
     magnitude: 4,
-    href: "https://ijiset.com/conference/NCISCT-2022/IJISET-NCISCT-220520.pdf",
   },
   {
-    value: "CellStrat",
-    label: "white paper published, Dec 2025",
-    item: "PINNs white paper",
-    category: "research",
+    value: "200+",
+    label: "DSA problems solved",
+    item: "Coding Blocks DSA",
+    category: "problemSolving",
+    magnitude: 5,
+  },
+  {
+    value: "DSA",
+    label: "logic and optimization",
+    item: "Coding Blocks DSA",
+    category: "problemSolving",
     magnitude: 4,
-    href: "/research/pinns",
   },
   {
-    value: "6 / 2",
-    label: "enterprise workflows / verticals (white paper)",
-    item: "PINNs white paper",
-    category: "research",
-    magnitude: 2,
-    href: "/research/pinns",
+    value: "92%",
+    label: "Coding Blocks DSA score",
+    item: "Coding Blocks DSA",
+    category: "achievements",
+    magnitude: 5,
   },
   {
-    value: "Best Project",
-    label: "Best Outgoing Project, BMSCE 2022–23",
-    item: "PINNs",
-    category: "research",
-    magnitude: 3,
-    href: "/research/pinns",
+    value: "B.Tech",
+    label: "Computer Science Engineering",
+    item: "Google Data Analytics",
+    category: "achievements",
+    magnitude: 4,
   },
   {
-    value: "5 / 8mo",
-    label: "physics-constrained eVTOL projects, IISc",
-    item: "Research arc",
-    category: "research",
-    magnitude: 2,
-    href: "/about",
+    value: "Portfolio",
+    label: "personal website built and customized",
+    item: "GitHub",
+    category: "achievements",
+    magnitude: 4,
   },
 ];

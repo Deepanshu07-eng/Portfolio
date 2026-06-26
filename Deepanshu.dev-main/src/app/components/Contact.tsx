@@ -176,8 +176,8 @@ export function Contact() {
     },
     {
       label: "Kaggle",
-      value: "kaggle.com/ashwingupta3012",
-      href: "https://www.kaggle.com/ashwingupta3012",
+      value: "kaggle.com/deepanshu157",
+      href: "https://www.kaggle.com/deepanshu157",
       icon: <KaggleIcon />,
     },
     {
@@ -263,7 +263,7 @@ export function Contact() {
                 margin: 0,
               }}
             >
-              Hard problems welcome.
+              Let's turn data into decisions 😊.
             </m.h2>
           </div>
         </div>
@@ -334,7 +334,7 @@ export function Contact() {
                       textTransform: "uppercase",
                     }}
                   >
-                    Optimising: Residuals • Not: Roles
+                    ANALYSING · BUILDING · LEARNING · ITERATING
                   </span>
                 </m.div>
 
@@ -352,11 +352,9 @@ export function Contact() {
                     textJustify: "inter-word",
                   }}
                 >
-                  Heads-down building right now - not looking for roles. But if
-                  you've got a hard problem, a wild idea, or just want to talk
-                  shop about LLMs, distributed systems, scientific ML, or why
-                  this site is unreasonably over-engineered for a portfolio, I'm
-                  always up for that.
+                  I'm currently building real-world data analytics projects while expanding my skills in Advanced SQL and FastAPI.
+
+My focus is transforming raw data into actionable insights through analysis, visualization, and interactive dashboards. I'm always excited to collaborate on data-driven projects, internships, and opportunities where I can learn, contribute, and solve meaningful business problems.
                 </m.p>
               </div>
 

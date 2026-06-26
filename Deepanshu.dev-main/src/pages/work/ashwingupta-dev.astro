@@ -73,7 +73,7 @@ const metrics = [
             After the performance baseline was locked in, the portfolio grew an ambient HUD layer - persistent fixed widgets that add spatial context without intruding on content.
           </p>
           <p class="th-body">
-            Bottom-left: a geolocation widget that resolves the visitor's coordinates via <strong>navigator.geolocation</strong> - falling back to <strong>Intl.DateTimeFormat</strong> timezone if permission is denied - to the nearest IATA airport code using <strong>Haversine distance</strong> across a curated set of major airports worldwide. Paired with a live clock and GMT offset display for both the visitor's location and home (BLR).
+            Bottom-left: a geolocation widget that resolves the visitor's coordinates via <strong>navigator.geolocation</strong> - falling back to <strong>Intl.DateTimeFormat</strong> timezone if permission is denied - to the nearest IATA airport code using <strong>Haversine distance</strong> across a curated set of major airports worldwide. Paired with a live clock and GMT offset display for both the visitor's location and home (DEL).
           </p>
           <p class="th-body">
             Bottom-right: normalized <strong>mouse XY mapped to [-1, 1]</strong> viewport coordinates, a session elapsed timer, and a radial SVG progress arc for back-to-top navigation. The arc tracks scroll position per-page, resets cleanly on Astro View Transitions via <strong>astro:page-load</strong>, and detects the correct scroll container - <strong>.hologram-interface</strong> on the homepage, <strong>.thinking-scroll</strong> on article and work pages.

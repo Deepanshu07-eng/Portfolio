@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { MapPin } from "lucide-react";
 
-const BLR_TZ = "Asia/Kolkata";
+const DEL_TZ = "Asia/Kolkata";
 
 type Airport = { code: string; lat: number; lng: number; tz: string };
 
 const AIRPORTS: Airport[] = [
   // India
-  { code: "BLR", lat: 13.1986, lng: 77.7066, tz: "Asia/Kolkata" },
-  { code: "DEL", lat: 28.5562, lng: 77.1, tz: "Asia/Kolkata" },
+  { code: "DEL", lat: 13.1986, lng: 77.7066, tz: "Asia/Kolkata" },
+  { code: "BLR", lat: 28.5562, lng: 77.1, tz: "Asia/Kolkata" },
   { code: "BOM", lat: 19.0896, lng: 72.8656, tz: "Asia/Kolkata" },
   { code: "MAA", lat: 12.9941, lng: 80.1709, tz: "Asia/Kolkata" },
   { code: "HYD", lat: 17.2403, lng: 78.4294, tz: "Asia/Kolkata" },
@@ -231,7 +231,7 @@ export function ClockWidget() {
   const userTz =
     userAirport?.tz ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
   const userCode = userAirport?.code ?? "···";
-  const sameAsBLR = userAirport?.code === "BLR";
+  const sameAsDEL = userAirport?.code === "DEL";
 
   return (
     <div
@@ -250,8 +250,8 @@ export function ClockWidget() {
         userSelect: "none",
       }}
     >
-      <ClockRow code="BLR" tz={BLR_TZ} />
-      {!sameAsBLR && <ClockRow code={userCode} tz={userTz} />}
+      <ClockRow code="DEL" tz={DEL_TZ} />
+      {!sameAsDEL && <ClockRow code={userCode} tz={userTz} />}
     </div>
   );
 }
