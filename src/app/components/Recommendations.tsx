@@ -1,149 +1,389 @@
 import { m } from "motion/react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "../../hooks/useMediaQuery";
 
 const FONT_SERIF = '"Playfair Display", Georgia, serif';
 const FONT_MONO = '"DM Mono", monospace';
 const FONT_SANS = '"DM Sans", sans-serif';
 
-const recs = [
+const credentials = [
   {
-    name: "Arun Kumar Vastrakar",
-    title: "Senior Delivery Director",
-    company: "Coforge",
-    relationship: "Delivery Head • HSBC AI • Pat on Back award",
-    date: "Nov 2024",
-    text: "Ashwin showed a great flexibility and stretched to complete a challenging task which resulted in client's delight. He was able to code a logic which client's other partner could not do it. Well done Ashwin.",
+    badge: "GOOGLE",
+    name: "Google Data Analytics Professional Certificate",
+    issuer: "Google • Coursera",
+    type: "Professional Certification",
+    date: "2026",
+    tag: "Data Analytics",
+    color: "#4285F4",
+    certificateUrl: "/certificates/google-data-analytics.pdf",
+    text: "Completed professional training in data cleaning, analysis, visualization, SQL, spreadsheets, and the end-to-end data analysis process.",
   },
   {
-    name: "Raja Sekhar Amirapu",
-    title: "Senior Technical Architect",
-    company: "Coforge",
-    relationship: "Direct colleague • HSBC project",
-    date: "Nov 2025",
-    text: "Ashwin's work on the telephony ingestion layer - PJSIP-based, highly stable, low-latency SIP call-handling at scale - was technically precise. Technically strong, dependable, and proactive. He consistently delivered production-ready code with strong technical ownership, and enhanced the development workflow through automation. Highly recommended for roles in VoIP engineering, real-time media systems, or conversational-AI infrastructure.",
+    badge: "PY",
+    name: "Python Certification",
+    issuer: "freeCodeCamp",
+    type: "Certification",
+    date: "2026",
+    tag: "Python Programming",
+    color: "#FFD43B",
+    certificateUrl: "/certificates/freecodecamp-python.pdf",
+    text: "Built strong fundamentals in Python, functions, problem solving, data structures, and automation-focused programming.",
   },
   {
-    name: "Snehasish Chakraborty",
-    title: "GCP Infrastructure Engineer",
-    company: "HSBC (client)",
-    relationship: "Client • HSBC",
-    date: "Feb 2025",
-    text: "I had the pleasure of working with Ashwin on a highly complex GCP infrastructure setup, where his expertise in scalability, testing, and debugging proved invaluable. He played a crucial role in designing and implementing the scalability logic, ensuring our infrastructure could handle increasing workloads efficiently. His structured approach to testing helped identify potential bottlenecks early, saving us from critical failures down the line.",
+    badge: "SQL+",
+    name: "SQL Intermediate Certificate",
+    issuer: "HackerRank",
+    type: "Certification",
+    date: "2026",
+    tag: "Intermediate SQL",
+    color: "#00EA64",
+    certificateUrl: "/certificates/hackerrank-sql-intermediate.pdf",
+    text: "Demonstrated intermediate SQL knowledge including subqueries, complex joins, window functions, and data manipulation.",
   },
   {
-    name: "Kartik Mehta",
-    title: "Fraud VS Technology Lead",
-    company: "HSBC (client)",
-    relationship: "Client • HSBC",
-    date: "Feb 2025",
-    text: "He would keep an open mind, welcome challenges, and think to deliver an end-to-end solution. I rate Ashwin highly - not just for his knowledge and skills, but his attitude to continue trying under pressure and deliver. I'm sure he will be adding great value wherever he works.",
+    badge: "SQL",
+    name: "SQL Basic Certificate",
+    issuer: "HackerRank",
+    type: "Certification",
+    date: "2026",
+    tag: "SQL Foundations",
+    color: "#00EA64",
+    certificateUrl: "/certificates/hackerrank-sql-basic.pdf",
+    text: "Validated core SQL skills including queries, filtering, joins, aggregation, and structured data retrieval.",
   },
   {
-    name: "Tulsi Patro",
-    title: "AI Engineer",
-    company: "Gida Technologies",
-    relationship: "Direct colleague",
-    date: "Nov 2023",
-    text: "Ashwin is a risk-taker, never shying away from trying innovative approaches - and what sets him apart is his ability to convert those risks into successful implementations. His commitment to meeting deadlines while upholding the quality of work is a testament to his professionalism. Fearlessness in taking on challenges inspires the entire team to push boundaries and strive for excellence.",
+    badge: "92%",
+    name: "Certificate of Excellence",
+    issuer: "Coding Blocks",
+    type: "Achievement",
+    date: "2025",
+    tag: "Academic Excellence",
+    color: "#C084FC",
+    certificateUrl: "/certificates/coding-blocks-excellence.pdf",
+    text: "Awarded for scoring 92% in assignments and showing excellent performance throughout the DSA course.",
+  },
+  
+  
+  {
+    badge: "DSA",
+    name: "Data Structures & Algorithms",
+    issuer: "Coding Blocks",
+    type: "Course Completion",
+    date: "2025",
+    tag: "C++ DSA",
+    color: "#FF6B35",
+    certificateUrl: "/certificates/coding-blocks-dsa.pdf",
+    text: "Completed DSA training in C++ covering arrays, recursion, linked lists, trees, graphs, and problem-solving patterns.",
+  },
+  
+  {
+    badge: "HACK",
+    name: "Hackshastra Hackathon",
+    issuer: "Hackathon",
+    type: "Participation Certificate",
+    date: "2025",
+    tag: "Team Innovation",
+    color: "#38BDF8",
+    certificateUrl: "/certificates/hackshastra.pdf",
+    text: "Participated in Hackshastra Hackathon and gained hands-on experience in team collaboration, ideation, and rapid project building.",
   },
 ];
 
-function RecCard({
-  rec,
+type Credential = (typeof credentials)[number];
+
+function CredentialCard({
+  item,
   index,
   isVisible,
-  centerSpan,
+  onOpen,
 }: {
-  rec: (typeof recs)[number];
+  item: Credential;
   index: number;
   isVisible: boolean;
-  centerSpan?: boolean;
+  onOpen: (item: Credential) => void;
 }) {
   const isMobile = useIsMobile();
 
   return (
-    <m.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+    <m.button
+      type="button"
+      onClick={() => onOpen(item)}
+      initial={{ opacity: 0, y: 24, scale: 0.98 }}
+      animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+      whileHover={{
+        y: -8,
+        scale: 1.02,
+        borderColor: item.color,
+        boxShadow: `0 0 0 1px ${item.color}55, 0 0 45px ${item.color}33`,
+      }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.45, delay: index * 0.06, ease: "easeOut" }}
       style={{
-        padding: isMobile
-          ? "1.4rem 1.4rem 1.4rem 1.6rem"
-          : "1.6rem 1.6rem 1.6rem 1.8rem",
-        borderLeft: "2px solid rgba(232,224,208,0.18)",
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.9rem",
-        border: "1px solid rgba(255,255,255,0.15)",
-        borderLeftWidth: "2px",
-        borderLeftColor: "rgba(232,224,208,0.2)",
-        borderRadius: "6px",
-        background: "transparent",
-        // lone last card: span the row but keep one-column width, centered
-        ...(centerSpan && {
-          gridColumn: "1 / -1",
-          justifySelf: "center",
-          width: "calc((100% - 1.5rem) / 2)",
-        }),
+        position: "relative",
+        textAlign: "left",
+        cursor: "pointer",
+        minHeight: isMobile ? "auto" : "310px",
+        padding: isMobile ? "1.35rem" : "1.55rem",
+        border: "1px solid rgba(255,255,255,0.14)",
+        borderRadius: "14px",
+        background:
+          "linear-gradient(135deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015))",
+        backdropFilter: "blur(10px)",
+        overflow: "hidden",
+        font: "inherit",
+        color: "inherit",
       }}
     >
-      <div>
-        <p
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: `radial-gradient(circle at top right, ${item.color}22, transparent 42%)`,
+          pointerEvents: "none",
+        }}
+      />
+
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <div
           style={{
-            fontFamily: FONT_SANS,
-            fontWeight: 600,
-            fontSize: "0.88rem",
-            color: "#e8e0d0",
-            margin: "0 0 2px",
-            lineHeight: 1.3,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            gap: "1rem",
+            marginBottom: "1.2rem",
           }}
         >
-          {rec.name}
-        </p>
+          <div
+            style={{
+              width: "46px",
+              height: "46px",
+              borderRadius: "50%",
+              display: "grid",
+              placeItems: "center",
+              border: `1px solid ${item.color}88`,
+              background: `${item.color}18`,
+              fontFamily: FONT_MONO,
+              fontSize: "0.62rem",
+              color: "#fff",
+              letterSpacing: "0.08em",
+              fontWeight: 700,
+              flexShrink: 0,
+              boxShadow: `0 0 22px ${item.color}22`,
+            }}
+          >
+            {item.badge}
+          </div>
+
+          <span
+            style={{
+              fontFamily: FONT_MONO,
+              fontSize: "0.55rem",
+              letterSpacing: "0.16em",
+              color: "rgba(255,255,255,0.35)",
+              textTransform: "uppercase",
+              paddingTop: "0.35rem",
+            }}
+          >
+            {item.date}
+          </span>
+        </div>
+
         <p
           style={{
             fontFamily: FONT_MONO,
             fontSize: "0.56rem",
-            letterSpacing: "0.07em",
-            color: "rgba(255,255,255,0.35)",
+            letterSpacing: "0.16em",
+            color: item.color,
+            textTransform: "uppercase",
+            margin: "0 0 0.55rem",
+          }}
+        >
+          {item.type} • {item.tag}
+        </p>
+
+        <h3
+          style={{
+            fontFamily: FONT_SANS,
+            fontSize: isMobile ? "1rem" : "1.08rem",
+            lineHeight: 1.25,
+            color: "#fafaf8",
+            margin: "0 0 0.45rem",
+            fontWeight: 700,
+          }}
+        >
+          {item.name}
+        </h3>
+
+        <p
+          style={{
+            fontFamily: FONT_MONO,
+            fontSize: "0.6rem",
+            color: "rgba(232,224,208,0.52)",
+            margin: "0 0 1rem",
+            letterSpacing: "0.06em",
+          }}
+        >
+          {item.issuer}
+        </p>
+
+        <div
+          style={{
+            height: "1px",
+            background: `linear-gradient(90deg, ${item.color}66, rgba(255,255,255,0.05))`,
+            marginBottom: "1rem",
+          }}
+        />
+
+        <p
+          style={{
+            fontFamily: FONT_SANS,
+            fontSize: "0.88rem",
+            lineHeight: 1.72,
+            color: "rgba(255,255,255,0.62)",
             margin: 0,
           }}
         >
-          {rec.title} • {rec.company}
+          {item.text}
+        </p>
+
+        <p
+          style={{
+            margin: "1.15rem 0 0",
+            fontFamily: FONT_MONO,
+            fontSize: "0.7rem",
+            letterSpacing: "0.14em",
+            color: item.color,
+            textTransform: "uppercase",
+          }}
+        >
+          Click to view certificate ↗
         </p>
       </div>
+    </m.button>
+  );
+}
 
-      <div style={{ height: "1px", background: "rgba(255,255,255,0.05)" }} />
+function CertificateModal({
+  selected,
+  onClose,
+}: {
+  selected: Credential | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [selected, onClose]);
 
-      <p
+  if (!selected) return null;
+
+  return (
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        display: "grid",
+        placeItems: "center",
+        padding: "2rem",
+        background: "rgba(0,0,0,0.78)",
+        backdropFilter: "blur(14px)",
+      }}
+    >
+      <m.div
+        initial={{ opacity: 0, scale: 0.92, y: 18 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.92, y: 18 }}
+        transition={{ duration: 0.25 }}
+        onClick={(e) => e.stopPropagation()}
         style={{
-          fontFamily: FONT_SANS,
-          fontSize: "0.88rem",
-          lineHeight: 1.75,
-          color: "rgba(255,255,255,0.62)",
-          margin: 0,
-          fontStyle: "normal",
-          flex: 1,
-          textAlign: "justify",
-          textJustify: "inter-word",
+          width: "min(920px, 94vw)",
+          maxHeight: "88vh",
+          border: `1px solid ${selected.color}77`,
+          borderRadius: "18px",
+          background:
+            "linear-gradient(135deg, rgba(18,18,18,0.96), rgba(8,8,8,0.98))",
+          boxShadow: `0 0 70px ${selected.color}33`,
+          overflow: "hidden",
         }}
       >
-        "{rec.text}"
-      </p>
+        <div
+          style={{
+            padding: "1rem 1.2rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            borderBottom: "1px solid rgba(255,255,255,0.08)",
+          }}
+        >
+          <div>
+            <p
+              style={{
+                margin: "0 0 0.25rem",
+                fontFamily: FONT_MONO,
+                fontSize: "0.55rem",
+                letterSpacing: "0.16em",
+                color: selected.color,
+                textTransform: "uppercase",
+              }}
+            >
+              {selected.issuer} • {selected.date}
+            </p>
+            <h3
+              style={{
+                margin: 0,
+                fontFamily: FONT_SANS,
+                color: "#fafaf8",
+                fontSize: "1rem",
+              }}
+            >
+              {selected.name}
+            </h3>
+          </div>
 
-      <p
-        style={{
-          fontFamily: FONT_MONO,
-          fontSize: "0.52rem",
-          letterSpacing: "0.08em",
-          color: "rgba(255,255,255,0.22)",
-          margin: 0,
-          textTransform: "uppercase",
-        }}
-      >
-        {rec.relationship} • {rec.date}
-      </p>
+          <button
+            onClick={onClose}
+            style={{
+              border: `1px solid ${selected.color}66`,
+              background: `${selected.color}14`,
+              color: "#fff",
+              borderRadius: "999px",
+              width: "36px",
+              height: "36px",
+              cursor: "pointer",
+              fontSize: "1.1rem",
+            }}
+          >
+            ×
+          </button>
+        </div>
+
+        <div
+          style={{
+            height: "min(70vh, 620px)",
+            background: "rgba(255,255,255,0.03)",
+          }}
+        >
+          <iframe
+            src={selected.certificateUrl}
+            title={selected.name}
+            style={{
+              width: "100%",
+              height: "100%",
+              border: 0,
+              background: "#111",
+            }}
+          />
+        </div>
+      </m.div>
     </m.div>
   );
 }
@@ -151,254 +391,107 @@ function RecCard({
 export function Recommendations() {
   const isMobile = useIsMobile();
   const [isVisible, setIsVisible] = useState(false);
+  const [selected, setSelected] = useState<Credential | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef(0);
-  const headerGapRef = useRef<HTMLDivElement>(null);
-  const maxOffsetRef = useRef(0);
-  const cachedTopRef = useRef<number | null>(null);
-
-  const [vpH, setVpH] = useState(() =>
-    typeof window !== "undefined" ? window.innerHeight : 900,
-  );
-  const [sectionH, setSectionH] = useState(() =>
-    typeof window !== "undefined" ? window.innerHeight : 900,
-  );
-
-  useEffect(() => {
-    if (isMobile) return;
-    const measure = () => {
-      const header = headerRef.current;
-      const inner = innerRef.current;
-      if (!header || !inner) return;
-      const vh = window.innerHeight;
-      const headerH = header.offsetHeight;
-      const contentH = inner.scrollHeight;
-      const stripH = Math.max(0, vh - headerH);
-      const maxOffset = Math.max(0, contentH - stripH);
-      maxOffsetRef.current = maxOffset;
-      cachedTopRef.current = null;
-      setVpH(vh);
-      setSectionH(vh + maxOffset);
-    };
-    requestAnimationFrame(measure);
-    window.addEventListener("resize", measure, { passive: true });
-    return () => window.removeEventListener("resize", measure);
-  }, [isMobile]);
-
-  useEffect(() => {
-    if (isMobile) return;
-    const scroller = document.querySelector(
-      ".hologram-interface",
-    ) as HTMLElement | null;
-    const section = sectionRef.current;
-    if (!scroller || !section) return;
-
-    const measureTop = () => {
-      let acc = 0;
-      let el: HTMLElement | null = section;
-      while (el && el !== scroller) {
-        acc += el.offsetTop;
-        el = el.offsetParent as HTMLElement | null;
-      }
-      cachedTopRef.current = acc;
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(() => {
-        if (cachedTopRef.current === null) measureTop();
-        const raw = scroller.scrollTop - (cachedTopRef.current ?? 0);
-        const offset = Math.max(0, Math.min(maxOffsetRef.current, raw));
-        if (innerRef.current) {
-          innerRef.current.style.transform = `translateY(-${offset}px)`;
-        }
-        const compressRatio = Math.min(1, offset / 100);
-        const gapPx = 80 * (1 - compressRatio) + 20 * compressRatio;
-        if (headerGapRef.current) {
-          headerGapRef.current.style.marginBottom = `${gapPx}px`;
-        }
-      });
-    };
-
-    scroller.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener(
-      "resize",
-      () => {
-        cachedTopRef.current = null;
-      },
-      { passive: true },
-    );
-    return () => {
-      scroller.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(rafRef.current);
-    };
-  }, [isMobile]);
-
-  useLayoutEffect(() => {
-    if (isMobile) return;
-    const scroller = document.querySelector(
-      ".hologram-interface",
-    ) as HTMLElement | null;
-    const section = sectionRef.current;
-    if (!scroller || !section || !innerRef.current) return;
-    let acc = 0;
-    let el: HTMLElement | null = section;
-    while (el && el !== scroller) {
-      acc += el.offsetTop;
-      el = el.offsetParent as HTMLElement | null;
-    }
-    cachedTopRef.current = acc;
-    const raw = scroller.scrollTop - acc;
-    const offset = Math.max(0, Math.min(maxOffsetRef.current, raw));
-    innerRef.current.style.transform = `translateY(-${offset}px)`;
-    if (headerGapRef.current) {
-      const compressRatio = Math.min(1, offset / 100);
-      headerGapRef.current.style.marginBottom = `${80 * (1 - compressRatio) + 20 * compressRatio}px`;
-    }
-  }, [isMobile, sectionH]);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
+
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 },
+      { threshold: 0.12 },
     );
+
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="recommendations"
-      style={{
-        position: "relative",
-        height: isMobile ? "auto" : sectionH,
-        background: "transparent",
-        ...(isMobile && { padding: "4rem 4vw" }),
-      }}
-    >
-      <div
-        style={
-          isMobile
-            ? {}
-            : {
-                position: "sticky",
-                top: 0,
-                height: vpH,
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-              }
-        }
+    <>
+      <section
+        ref={sectionRef}
+        id="recommendations"
+        style={{
+          position: "relative",
+          padding: isMobile ? "4.5rem 4vw" : "6rem 6vw",
+          background: "transparent",
+        }}
       >
-        {/* Header */}
         <div
-          ref={headerRef}
-          style={isMobile ? {} : { padding: "0.85rem 6vw 2rem" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            marginBottom: isMobile ? "2rem" : "3rem",
+          }}
         >
-          <div
-            ref={headerGapRef}
+          <span
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-              marginBottom: isMobile ? "2rem" : "80px",
+              fontFamily: FONT_MONO,
+              fontSize: "0.62rem",
+              letterSpacing: "0.22em",
+              color: "rgba(255,255,255,0.42)",
+              textTransform: "uppercase",
             }}
           >
-            <span
-              style={{
-                fontFamily: FONT_MONO,
-                fontSize: "0.62rem",
-                letterSpacing: "0.2em",
-                color: "rgba(255,255,255,0.4)",
-                textTransform: "uppercase",
-              }}
-            >
-              Recommendations
-            </span>
-            <div
-              style={{
-                flex: 1,
-                height: "1px",
-                background: "rgba(255,255,255,0.07)",
-              }}
-            />
-          </div>
+            Credentials
+          </span>
 
-          <div style={{ overflow: "hidden" }}>
-            <m.h2
-              initial={{ y: "100%" }}
-              animate={isVisible ? { y: 0 } : { y: "100%" }}
-              transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-              style={{
-                fontFamily: FONT_SERIF,
-                fontSize: isMobile
-                  ? "clamp(1.8rem, 7vw, 4rem)"
-                  : "clamp(2.6rem, 4.5vw, 4rem)",
-                fontWeight: 800,
-                lineHeight: 1.05,
-                letterSpacing: "0.02em",
-                color: "#fafaf8",
-                margin: 0,
-              }}
-            >
-              In their words.
-            </m.h2>
-          </div>
-        </div>
-
-        {/* Content strip */}
-        <div
-          style={
-            isMobile
-              ? {}
-              : { flex: 1, position: "relative", overflow: "hidden" }
-          }
-        >
           <div
-            ref={innerRef}
-            style={
-              isMobile
-                ? { paddingTop: "2rem" }
-                : {
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    padding: "1.5rem 6vw 4rem",
-                  }
-            }
-          >
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                gap: isMobile ? "1.2rem" : "1.5rem",
-              }}
-            >
-              {recs.map((rec, i) => (
-                <RecCard
-                  key={rec.name}
-                  rec={rec}
-                  index={i}
-                  isVisible={isVisible}
-                  centerSpan={
-                    !isMobile &&
-                    recs.length % 2 === 1 &&
-                    i === recs.length - 1
-                  }
-                />
-              ))}
-            </div>
-          </div>
+            style={{
+              flex: 1,
+              height: "1px",
+              background: "rgba(255,255,255,0.07)",
+            }}
+          />
         </div>
-      </div>
-    </section>
+
+        <div style={{ overflow: "hidden", marginBottom: "3rem" }}>
+          <m.h2
+            initial={{ y: "100%" }}
+            animate={isVisible ? { y: 0 } : { y: "100%" }}
+            transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+            style={{
+              fontFamily: FONT_SERIF,
+              fontSize: isMobile
+                ? "clamp(2.2rem, 10vw, 4rem)"
+                : "clamp(3rem, 5.5vw, 5.4rem)",
+              fontWeight: 800,
+              lineHeight: 1.02,
+              letterSpacing: "0.01em",
+              color: "#fafaf8",
+              margin: 0,
+            }}
+          >
+            Verified learning & achievements.
+          </m.h2>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile
+              ? "1fr"
+              : "repeat(auto-fit, minmax(310px, 1fr))",
+            gap: isMobile ? "1rem" : "1.25rem",
+          }}
+        >
+          {credentials.map((item, index) => (
+            <CredentialCard
+              key={item.name}
+              item={item}
+              index={index}
+              isVisible={isVisible}
+              onOpen={setSelected}
+            />
+          ))}
+        </div>
+      </section>
+
+      <CertificateModal selected={selected} onClose={() => setSelected(null)} />
+    </>
   );
 }
