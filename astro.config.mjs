@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://www.ashwingupta.dev",
+  site: "https://portfolio-rho-steel-i3m8dvq2ho.vercel.app/",
   output: "static",
   redirects: {
     "/research": "/projects",
@@ -16,7 +16,7 @@ export default defineConfig({
       priority: 0.7,
       lastmod: new Date(),
       serialize(item) {
-        if (item.url === "https://www.ashwingupta.dev/") {
+        if (item.url === "https://portfolio-rho-steel-i3m8dvq2ho.vercel.app/") {
           return { ...item, priority: 1.0, changefreq: "weekly" };
         }
         return item;

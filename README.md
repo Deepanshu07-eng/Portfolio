@@ -1,4 +1,4 @@
-# Ashwin Gupta Portfolio - UI/UX Design Document
+# Deepanshu Portfolio - UI/UX Design Document
 
 ## Credits and Contribution Context
 

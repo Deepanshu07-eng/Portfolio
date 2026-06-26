@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.ashwingupta.dev/sitemap-index.xml
+Sitemap: https://portfolio-rho-steel-i3m8dvq2ho.vercel.app/sitemap-index.xml

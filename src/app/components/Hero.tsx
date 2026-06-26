@@ -139,7 +139,6 @@ export function Hero() {
   ];
 
   const workItems = [
-    { label: "Featured", href: "/featured", section: "featured" },
     { label: "Projects", href: "/projects", section: "projects" },
   ];
 
@@ -1068,7 +1067,7 @@ export function Hero() {
             >
               <img
                 src={PROFILE_IMAGE}
-                alt="Ashwin Gupta"
+                alt="Deepanshu"
                 width={800}
                 height={1734}
                 fetchPriority="high"

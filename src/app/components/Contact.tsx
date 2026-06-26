@@ -514,7 +514,7 @@ My focus is transforming raw data into actionable insights through analysis, vis
                   textTransform: "uppercase",
                 }}
               >
-                🎨 Vision & design by Ashwin Gupta • ⚡ Engineered with Claude
+                🎨 Vision & design by Deepanshu • ⚡ Engineered with Claude
                 Code • 🚀 Deployed on Vercel{" "}
               </span>
             </div>

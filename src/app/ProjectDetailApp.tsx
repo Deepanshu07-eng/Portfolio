@@ -12,7 +12,6 @@ export default function ProjectDetailApp({ slug }: Readonly<{ slug: string }>) {
   const backHref = (() => {
     if (typeof window === "undefined") return "/#projects";
     const from = new URLSearchParams(window.location.search).get("from");
-    if (from === "featured") return "/#featured";
     if (from === "research") return "/#projects";
     return "/#projects";
   })();

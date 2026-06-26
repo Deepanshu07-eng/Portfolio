@@ -1,805 +1,506 @@
 import { m } from "motion/react";
 import { useState } from "react";
-import {
-  useIsMobile,
-  useIsTablet,
-  useIsDesktop,
-} from "../../hooks/useMediaQuery";
-import { useEqualRows } from "../../hooks/useCollageGrid";
-import { EqualGridRenderer } from "./CollageRenderer";
-import { researchItems, ResearchCard } from "./Research";
-import coforgeLogoImg from "../../assets/coforgeLogo.webp?url";
-import gidaLogoImg from "../../assets/gidaLogo.webp?url";
-import hdfcLogoImg from "../../assets/HDFClogo.webp?url";
-import bmsceLogoImg from "../../assets/BMSlogo.webp?url";
-import prismforceLogoImg from "../../assets/prismforceLogo.webp?url";
+import { useIsMobile } from "../../hooks/useMediaQuery";
 
 const FONT_SERIF = '"Playfair Display", Georgia, serif';
 const FONT_MONO = '"DM Mono", monospace';
 const FONT_SANS = '"DM Sans", sans-serif';
 
-const COFORGE_LOGO = coforgeLogoImg;
-const GIDA_LOGO = gidaLogoImg;
-const HDFC_LOGO = hdfcLogoImg;
-const BMSCE_LOGO = bmsceLogoImg;
-
-export type Project = {
-  index: string;
-  slug: string;
+type SubProject = {
   title: string;
-  company: string;
-  logo: string;
-  logoHeight: number;
   status: string;
-  devStatus?: string;
-  tags: string[];
-  impact: string;
-  summary: [string, string, string, string];
-  bullets: string[];
-  github: string | null;
+  liveUrl?: string;
+  github?: string;
 };
 
-export function renderBullet(text: string): React.ReactNode {
-  const parts = text.split(/\*\*(.+?)\*\*/g);
-  return parts.map((part, i) =>
-    i % 2 === 1 ? (
-      <strong key={i} style={{ color: "#e8e0d0", fontWeight: 600 }}>
-        {part}
-      </strong>
-    ) : (
-      part
-    ),
-  );
-}
+type Project = {
+  index: string;
+  title: string;
+  category: string;
+  status: string;
+  color: string;
+  tags: string[];
+  summary: string;
+  details: string[];
+  liveUrl?: string;
+  github?: string;
+  subProjects?: SubProject[];
+};
 
-export const projects: Project[] = [
+const projects: Project[] = [
   {
     index: "01",
-    slug: "ashwingupta-dev",
-    title: "ashwingupta.dev - Design Handoff to Production",
-    company: "Personal",
-    logo: "/logos/vercel.svg",
-    logoHeight: 18,
-    status: "Shipped",
-    devStatus: "completed",
-    tags: [
-      "Spatial UI Architecture",
-      "TypeScript / React",
-      "Canvas 2D",
-      "Astro • Vercel",
-      "Performance Engineering",
-      "Ambient Interface",
-      "Domain & DNS",
-    ],
-    impact:
-      "Live at ashwingupta.dev • 90% image reduction • 72% JS bundle cut • 400 CSS DOM nodes eliminated • ambient HUD system with geolocation, exploration tracking, and persistent cross-page widgets",
-    summary: [
-      "The original portfolio claimed performance engineering while shipping **400 animated DOM nodes** and a **2 MB JPEG hero** - self-defeating on load.",
-      "Rebuilt as a **three-layer spatial interface** - all visual effects collapsed into a single Canvas RAF loop, offscreen pre-rendering, lazy loading, WebP preloads. Structural optimization, not cosmetic.",
-      "Extended with an **ambient HUD system** - geolocation-to-nearest-airport clocks, scroll-depth exploration tracker with color-staged progress arc, normalized mouse XY - all persistent across Astro View Transitions.",
-      "**90% image reduction** • **72% JS cut** • **400 DOM nodes eliminated** • frame time **18–25ms → 4–6ms** • **17 pages** tracked at scroll-depth resolution.",
-    ],
-    bullets: [
-      "A portfolio site is its own proof unit. The designer baseline was self-defeating - the first thing a hiring manager measured was a **performance failure on the site claiming performance engineering**.",
-      "Designer baseline: **400 CSS-animated DOM particles**, **2 MB JPEG** hero, Google Fonts loaded per-component, **72 unvetted dependencies**. The site needed to signal systems thinking - and was doing the opposite.",
-      "Rebuilt end-to-end. **Three-layer spatial architecture** (environment, canvas particle field, hologram interface). All visual effects collapsed into a **single Canvas 2D RAF loop**. Images to WebP with fetchpriority preload. Below-fold sections split via **React.lazy + Suspense**.",
-      "Scanline texture pre-rendered to offscreen canvas (**1 drawImage vs 270 fillRect/frame**). Edge cache rebuilt every 3 frames. RAF paused on visibility change. Mouse tracking gated behind RAF. **Stable 60 FPS under CPU throttle**.",
-      "Image: **2 MB → 211 KB (90%)**. JS bundle: **72% cut**. DOM nodes: **400 CSS-animated eliminated**. Font requests: **3 → 0**. Canvas frame time: **18–25 ms → 4–6 ms**.",
-      "Ambient interface layer: **geolocation → Haversine nearest-IATA** across a curated airport dataset. Shows visitor's local timezone clock alongside home (BLR). Falls back to `Intl.DateTimeFormat` if permission denied. Normalized **mouse XY** mapped to [-1, 1] and **session timer** complete the bottom-right HUD.",
-      "**Exploration tracker** built on scroll-depth weighting across 18 distinct pages - not binary page visits. Each page contributes proportionally by max scroll reached. Color arc interpolates RGB across red → yellow → blue → green brackets. Persists in **localStorage** across sessions.",
-      "**Radial-arc scroll-to-top** resets cleanly per navigation via `astro:page-load`. Scroll container detection handles both `.hologram-interface` (homepage) and `.thinking-scroll` (article pages). All HUD widgets use `transition:persist` - zero flicker across View Transitions.",
+    title: "School / College Bus & Van Route Optimization",
+    category: "Major Project",
+    status: "Featured",
+    color: "#22d3ee",
+    tags: ["Python", "SQL", "Route Optimization", "Maps", "Dashboard"],
+    summary:
+      "A route optimization system for school and college transport to reduce travel time, fuel usage, and route confusion.",
+    details: [
+      "Manages student pickup points and vehicle routes.",
+      "Optimizes routes using graph-based logic.",
+      "Includes attendance tracking and route reporting.",
+      "Designed for admin dashboard and future maps integration.",
     ],
     github: "https://github.com/Deepanshu07-eng",
   },
   {
     index: "02",
-    slug: "pageindexollama",
-    title: "PageIndexOllama - Local-First Fork of PageIndex",
-    company: "Open Source",
-    logo: "/logos/github.svg",
-    logoHeight: 18,
-    status: "Shipped",
-    devStatus: "completed",
-    tags: [
-      "Provider Abstraction",
-      "Tree-Based RAG",
-      "Ollama / Local LLMs",
-      "Bounded Async Concurrency",
-      "Hierarchical Fallback",
-      "Python / Open Source",
+    title: "Real Life Netflix Visualization Project",
+    category: "Data Analytics",
+    status: "Completed",
+    color: "#ef4444",
+    tags: ["Python", "Pandas", "Matplotlib", "EDA"],
+    summary:
+      "A real-world Netflix data analysis project focused on cleaning, exploring, and visualizing content trends.",
+    details: [
+      "Cleaned and analyzed Netflix dataset using Pandas.",
+      "Created visual insights using Matplotlib.",
+      "Explored content type, release year, country, and rating patterns.",
+      "Best suited as a beginner-friendly Data Analyst portfolio project.",
     ],
-    impact:
-      "Fully offline tree-RAG execution • vendor lock-in eliminated • provider-agnostic runtime",
-    summary: [
-      "Tree-RAG was **hardwired to one provider contract** - completion differences silently corrupted recursive traversal; failures surface only at collapse.",
-      "Added a **provider-routing layer** with **finish-reason normalization**, so traversal depends on stable internal contracts, not whichever runtime answered.",
-      "Prompt externalization, bounded concurrency, and hierarchical fallback stabilize long-document runs on **local models** with uneven outputs and limited memory.",
-      "**Fully offline tree-RAG** across Ollama, llama.cpp, and vLLM - provider switching is transparent, with no external API keys required.",
+    github:
+      "https://github.com/Deepanshu07-eng/Python/tree/main/Real%20Life%20NetfliX%20Visualisation%20Project%20(Pandas%2C%20matplotlib)",
+  },
+  {
+    index: "03",
+    title: "Air Quality Prediction ML",
+    category: "Machine Learning",
+    status: "Completed",
+    color: "#4ade80",
+    tags: ["Python", "ML", "Prediction", "Data Cleaning"],
+    summary:
+      "A machine learning project built to predict air quality levels using environmental data.",
+    details: [
+      "Prepared and cleaned air quality dataset.",
+      "Applied machine learning models for prediction.",
+      "Focused on practical ML workflow from data preprocessing to output.",
+      "Useful for showing beginner ML and data science skills.",
     ],
-    bullets: [
-      "All inference required a **live OpenAI API key** - offline or air-gapped execution was blocked entirely; **provider switches corrupted traversal silently** with no error surface; token encoding differences across providers produced inconsistent chunk boundaries with no visible signal.",
-      "PageIndex's tree RAG was hardcoded to **OpenAI's API contract** - inline prompt strings, non-normalized completion handling. **Local or offline deployment was impossible**. Any provider change broke traversal.",
-      "Forked and refactored: **provider-routing abstraction** resolved via env vars. **Finish-reason normalization layer** stabilizes recursive traversal across model outputs. Prompts externalized into a registry loader. **Bounded async concurrency** across TOC generation and summarization. Hierarchical fallback for large-document robustness.",
-      "Normalized completion contracts prevent finish-reason variations from corrupting **recursive traversal state**. Fallback chunk policies handle **constrained VRAM and RAM**. Structured-output hardening absorbs imperfect model responses without pipeline failure.",
-      "**Fully offline tree-RAG** with Ollama - no API keys. Seamless provider switching via stable internal contracts. Regression risk reduced through e2e coverage across document types and model sizes.",
-    ],
-    github: "https://github.com/Deepanshu07-eng",
   },
   {
     index: "04",
-    slug: "hsbc-voice",
-    title: "Conversational Analytics - HSBC",
-    company: "HSBC",
-    logo: "/logos/hsbc.svg",
-    logoHeight: 22,
-    status: "Client Delivery",
-    tags: [
-      "SIP/Voice Orchestration (PJSIP • RFC 3261)",
-      "CPU-Pinned Processes • asyncio + uvloop",
-      "GCP Infrastructure (Packer • GCE • HPA)",
-      "Cross-Stack Observability",
-      "LLM Inference Pipeline",
-      "Cost Engineering",
+    title: "Capstone Project",
+    category: "Data Project",
+    status: "Completed",
+    color: "#a78bfa",
+    tags: ["Analytics", "Python", "Visualization", "Report"],
+    summary:
+      "A capstone-level project focused on applying data analysis concepts in a structured project workflow.",
+    details: [
+      "Includes data understanding, cleaning, analysis, and insights.",
+      "Structured like a complete portfolio-ready project.",
+      "Shows ability to work through an end-to-end data problem.",
     ],
-    impact:
-      "1,600+ concurrent sessions • 7× VM capacity • ~$1.3M annualized savings • MTTR ~1–2 hrs → ~10 min",
-    summary: [
-      "GIL'd threading on a **32-core VM** left 31 cores idle - memory ballooning capped sessions at **20 per VM**; documentation **10–15 min**; incident recovery **1–2 hours**.",
-      "Migrated to **8-core VM**; **8 CPU-pinned parallel instances** via taskset escaped GIL; **asyncio + uvloop** replaced threading - each SIP session a coroutine across SBC, STT, and LLM.",
-      "Built **cross-stack log correlation**, SIPp load testing, and secure media transport - capacity, observability, and cost treated as one system.",
-      "**7× per-VM capacity** • **1,600+ sessions** sustained • **$118K → $8K/month** • MTTR **1–2 hr → ~10 min** • docs **10–15 min → 2–3 min**.",
-    ],
-    bullets: [
-      "**GIL'd threading caused memory ballooning** - concurrent sessions saturated at 20 per VM before packet loss rose above 10%; available hardware capacity was highly under-utilised; post-call documentation required **10–15 minutes of manual effort** per interaction with no automated path; fragmented cross-service logs with no correlation layer meant incidents required **1–2 hours of manual reconstruction** to identify root cause.",
-      "The platform ran on GIL'd threading with **memory ballooning** on a **32-core VM** - capped at **20 concurrent calls**, 31 cores idle. Post-call documentation: **10–15 min per interaction**. Inference cost: **~$118K/month**. Incident recovery: **1–2 hours** - fragmented logs, no unified observability layer.",
-      "Led a **4-engineer team**. Owned **Packer automation across all project modules** - standardizing GCE image builds for the full SIP stack **(SBC → STT → LLM inference)**. Migrated from **32-core n2-standard-32** to **8-core c4-standard-8**; deployed **8 CPU-pinned parallel instances** via <code>taskset</code> - one per core, escaping GIL entirely. Rewrote concurrency with **asyncio + uvloop**, eliminating memory ballooning. Built **SIPp load test suite** (2,000 concurrent users). Architected **cross-stack log-correlation** over GCP Logging APIs - **250K+ log lines in under 5 seconds**.",
-      "**<2s E2E transcription latency**, <5% packet loss at 1,600+ concurrent sessions. libsrtp + DTLS/SRTP for in-transit security. Grafana-Prometheus with MACD triggers. Migrated **n2-standard-32 → c4-standard-8**, improving transcript length **30–40% under load**.",
-      "**7× per-VM capacity (20 → 140–160 calls)**. **1,600+ sessions** sustained. Documentation: **10–15 min → 2–3 min**. Compute: **$118K → $8K/month (~$1.3M annualized savings)**. MTTR: **1–2 hours → ~10 minutes**.",
-    ],
-    github: null,
   },
   {
     index: "05",
-    slug: "azure-infra-docs",
-    title: "Azure Infrastructure Documentation Engine",
-    company: "Coforge",
-    logo: COFORGE_LOGO,
-    logoHeight: 18,
-    status: "Client Delivery",
-    tags: [
-      "Azure Resource Graph API",
-      "Live State Extraction",
-      "Network & Security Config Mapping",
-      "PlantUML Diagram Generation",
-      "Few-Shot LLM Prompting",
-      "Fabrication Guardrails",
+    title: "Password Manager Program",
+    category: "Python CLI",
+    status: "Completed",
+    color: "#facc15",
+    tags: ["Python", "CLI", "JSON", "File Handling"],
+    summary:
+      "A command-line password manager built in Python with save, search, update, delete, and generate password features.",
+    details: [
+      "Stores password records using file handling.",
+      "Includes password generation and search features.",
+      "Improved with exception handling and reusable functions.",
+      "Good project for Python fundamentals and CLI logic.",
     ],
-    impact:
-      "~2–3 days → ~2–3 hours documentation turnaround • 104 resource groups/project • zero fabricated components",
-    summary: [
-      "Azure docs relied on **manual exports and hand-drawn diagrams** - every project took **2–3 days** and drifted from live state.",
-      "Built a **live-state extraction pipeline** - subscription scan, topology mapping, and security config analysis auto-generate SDDs and PlantUML from live resource evidence.",
-      "**Few-shot prompting** grounds generation in extracted inventory; guardrails reject any component without a matching live resource - fabrication blocked from governance docs.",
-      "**2–3 days → ~2–3 hours** • **104 resource groups** per engagement • **zero fabricated components** • manual PlantUML authoring removed.",
+  },
+  {
+    index: "06",
+    title: "01 Python Small Projects",
+    category: "Python Projects",
+    status: "Collection",
+    color: "#38bdf8",
+    tags: ["Python", "Beginner", "Logic Building"],
+    summary:
+      "A collection of small Python projects built for practice and logic building.",
+    details: [
+      "Beginner-friendly Python practice projects.",
+      "Focused on conditions, loops, functions, and input handling.",
     ],
-    bullets: [
-      "Infrastructure documentation required **manual extraction from Azure** - 2–3 days per project; **PlantUML diagrams were authored by hand** from memory or stale exports; documented architecture drifted from live infrastructure state with **no mechanism to detect or correct divergence**.",
-      "Enterprise infrastructure documentation required manual Azure subscription extraction - **2–3 days per project**. Produced stale views, delayed governance reviews, and documented state that drifted from live infrastructure.",
-      "Built a Streamlit engine accepting a **subscription ID**, auto-generating SDDs and **PlantUML diagrams** via automated inventory extraction, network flow mapping, security config analysis, and dependency graph construction. **Few-shot LLM prompting** grounds architecture rationale in live state. **Validation guardrails** cross-check every generated component against extracted inventory.",
-      "Guardrail layer enforces that every generated component maps to a **verified live resource** - hallucinated topology can't reach governance docs. Outputs regenerated from live subscription state - no cached snapshots, no documentation drift.",
-      "Documentation: **2–3 days → ~2–3 hours**. Average **104 resource groups per project**. Eliminated manual PlantUML authoring. Live-state grounding replaced manual transcription.",
+    subProjects: [
+      { title: "Guess the Correct Number using Python", status: "Completed" },
+      { title: "Rock, Paper, Scissors using Python", status: "Completed" },
     ],
-    github: null,
   },
   {
     index: "07",
-    slug: "here-app",
-    title: "Here.app – Multilingual Vehicle Intelligence Platform",
-    company: "HDFC ERGO",
-    logo: HDFC_LOGO,
-    logoHeight: 22,
-    status: "Client Delivery",
-    tags: [
-      "RAG",
-      "163 Languages",
-      "QA-Gated Retrieval",
-      "Structured Spec Database",
-      "Dynamic Data Retrieval",
-      "Vehicle Intelligence",
+    title: "Web Development Projects",
+    category: "Frontend Collection",
+    status: "Collection",
+    color: "#fb7185",
+    tags: ["HTML", "CSS", "JavaScript", "Frontend"],
+    summary:
+      "A collection of frontend clone and UI practice projects created while learning web development.",
+    details: [
+      "Includes multiple frontend UI clone projects.",
+      "Some projects can be deployed as live demos.",
+      "Useful for showing frontend basics and layout practice.",
     ],
-    impact:
-      "~97% factual accuracy • 163 languages • reduced manual escalation on specification queries",
-    summary: [
-      "Vehicle assistants answered **specification queries inconsistently across languages** - the same request could contradict itself, making manual escalation the safe fallback.",
-      "Built a **RAG system** over a structured vehicle database with image-linked attributes - every answer grounded in one canonical source.",
-      "**QA-gated retrieval** validates lookup quality before generation, while **163-language delivery** stays anchored to one data model instead of post-hoc translation.",
-      "**~97% factual accuracy** across **163 languages** • grounded responses reduced manual escalation on configuration, pricing, and feature-specification queries at scale.",
+    subProjects: [
+      { title: "Amazon Clone", status: "Deployable" },
+      { title: "Login Signup Page", status: "Deployable" },
+      { title: "Spotify Clone", status: "Deployable" },
+      { title: "To-Do List", status: "Deployable" },
+      { title: "VS Code Clone", status: "Deployable" },
     ],
-    bullets: [
-      "Vehicle spec chatbots produced **inconsistent and factually unreliable answers** - the same query in different languages could return contradictory results; **manual support escalation** was the only fallback for spec-heavy queries, creating volume bottlenecks at scale.",
-      "HDFC Bank's vehicle intelligence required accurate answers on structured specification data across **163 languages**. Standard chatbots failed on spec queries - generating inconsistent answers that increased manual support escalation.",
-      "**RAG-based vehicle intelligence assistant** grounded in a curated specification database with image-linked attributes. **QA-tested retrieval pipeline** with dynamic data lookup across **163 languages** - localized responses grounded in the same structured data, not translated post-hoc.",
-      "QA-gated retrieval enforces factual grounding before responses are served - no speculative answers on spec queries. Structured specification database acts as a single source of truth across all 163 language boundaries. Accuracy validated across full coverage before production.",
-      "**~97% factual accuracy** across **163 languages**. Reduced manual support escalation on spec-heavy queries.",
-    ],
-    github: null,
-  },
-  {
-    index: "09",
-    slug: "skill-recommendation-engine",
-    title: "Graph-Based Skill Recommendation Engine",
-    company: "Prismforce",
-    logo: prismforceLogoImg,
-    logoHeight: 28,
-    status: "Client Delivery",
-    tags: [
-      "Weighted Directed Graph",
-      "Multi-Level Skill Hierarchy",
-      "Dynamic Node Updates",
-      "Mathematical Scoring Heuristics",
-      "Real-Time Inference",
-      "NVIDIA T4",
-    ],
-    impact:
-      "+30% recommendation relevance • sub-50ms latency • single NVIDIA T4 under production load",
-    summary: [
-      "Skill recommendations ignored **hierarchical relationships**, taxonomy changes forced **full batch retraining**, and live inference missed the **sub-50ms** SLA.",
-      "Built a **weighted directed graph** over multilevel skill hierarchies with typed edges, lightweight scoring - structure, not retraining, drives relevance.",
-      "Dynamic node insertion and deterministic traversal keep the graph current; latency was profiled at the **99th percentile** under production load.",
-      "**+30% relevance** • **sub-50ms inference** on one **NVIDIA T4** • taxonomy expansion no longer required batch retraining • live updates stayed current.",
-    ],
-    bullets: [
-      "The recommendation system **ignored hierarchical skill relationships** - related skills treated as independent nodes with no structural modeling; **every taxonomy expansion triggered full batch retraining**, blocking updates until recompute completed; inference latency under production concurrency **exceeded the sub-50ms SLA** required for live platform use.",
-      "Prismforce needed real-time skill recommendations against a **large, evolving taxonomy**. The existing system missed hierarchical skill relationships, went stale under profile updates, and couldn't hit **sub-50ms latency** for live platform use.",
-      "Real-time recommendation engine using a **weighted directed graph** encoding multi-level skill hierarchy relationships as typed edges with dynamic weight updates. **Lightweight mathematical scoring heuristics** minimize computational overhead per inference call. Update model handles **dynamic node additions without full graph recomputation**.",
-      "**Deterministic traversal logic** produces consistent outputs under frequent profile and taxonomy updates. Heuristics keep inference paths predictable and bounded. **Latency profiled under realistic production concurrency** on NVIDIA T4 before deployment.",
-      "**~30% improvement** in recommendation relevance. **Sub-50ms inference** on NVIDIA T4 under production load. **Dynamic updates eliminated batch retraining** on taxonomy expansion.",
-    ],
-    github: null,
-  },
-  {
-    index: "10",
-    slug: "pinns",
-    title: "Physics-Informed Neural Networks (PINNs)",
-    company: "BMS College of Engineering",
-    logo: BMSCE_LOGO,
-    logoHeight: 28,
-    status: "Best Outgoing Project • 2022–23",
-    tags: [
-      "PINNs",
-      "Dual-Loss Optimization",
-      "PDEs / ODEs",
-      "Fluid Dynamics",
-      "Structural Mechanics",
-      "Heat Transfer",
-    ],
-    impact:
-      "Best Outgoing Project • BMSCE 2022–23 • 6 validated benchmarks across fluid, structural, and thermal domains",
-    summary: [
-      "Purely data-driven simulation needed **large labeled datasets** and produced **physically invalid solutions** when sparse data let models ignore governing laws.",
-      "Developed a **dual-loss PINN framework** that embeds **PDE/ODE constraints** directly into optimization - data fit and physical law are solved together.",
-      "Validated across **six benchmarks** spanning fluid, structural, and thermal domains, including Burgers' equation plus Neumann and Dirichlet variants.",
-      "**Stable convergence** across three physics domains with limited data • HVAC and server-cooling use cases explored • **Best Outgoing Project - BMSCE 2022–23**.",
-    ],
-    bullets: [
-      "Purely data-driven physics simulation required **large labeled datasets** expensive or impossible to generate experimentally; sparse training data produced **physically implausible solutions** - the model could satisfy the data loss while violating governing equations; no unified framework existed that validated across multiple physics domains simultaneously.",
-      "Physics simulation (fluid dynamics, structural mechanics, heat transfer) is **unstable under purely data-driven approaches** - requires large labeled datasets that are expensive or impossible to generate, and produces physically implausible solutions under sparse data.",
-      "**Dual-loss PINN framework** embedding governing **PDE/ODE constraints directly into the optimization objective** alongside data loss. Validated across **six benchmarks**: Burgers' equation, 1D heat conduction via pin fin, fixed-fixed column deflection, cantilever tip deflection, 1D transient cooling under **Neumann flux and Dirichlet boundary conditions**.",
-      "Physics constraints act as a **regularizer** - preventing physically implausible solutions from satisfying data loss alone. Neumann and Dirichlet boundary condition variants validated generalizability across constraint types and problem geometries.",
-      "**Stable convergence across 6 physics benchmarks** - fluid, structural, thermal - with limited labeled data. Applied use cases in HVAC thermal feedback and server cooling. **Best Outgoing Project - BMSCE 2022–23**.",
-    ],
-    github: null,
-  },
-  {
-    index: "12",
-    slug: "scholaros",
-    title: "ScholarOS - Structured Research Execution Platform",
-    company: "Personal",
-    logo: "/logos/github.svg",
-    logoHeight: 18,
-    status: "In Development",
-    tags: [
-      "MCP Orchestrator • DAG Execution",
-      "9 Deterministic Services",
-      "Hypothesis • Critic Agent Loop",
-      "Evidence-Bound Outputs",
-      "Chroma • SQLite • Redis",
-      "Local-First • Self-Hostable",
-    ],
-    impact:
-      "5,479 chunks • 180 claims • 76 contradictions detected • 100% determinism rate • fully local execution",
-    summary: [
-      "Research copilots generate **fluent text without evidence traceability** - grounded synthesis and hallucination look identical, so no claim can be audited.",
-      "**Five locked MCP services** cover literature mapping, contradiction detection, hypothesis critique, evidence extraction, and assembly through **schema-defined interfaces**.",
-      "Only hypothesis critique remains agentic - **bounded to five iterations**; all other stages are deterministic with provenance preserved through **typed artifacts**.",
-      "Each claim is **bound to source evidence**; contradiction detection marks where consensus breaks, keeping outputs falsifiable and useful beyond sessions.",
-    ],
-    bullets: [
-      "Generic AI tools applied to academic research produce **fluent text with no evidence traceability** - hallucinated synthesis is structurally indistinguishable from grounded synthesis; literature review, contradiction detection, hypothesis validation, evidence extraction, and proposal drafting each require **separate manual workflows** with no shared execution model; hypothesis stress-testing relies on the same model that generated the hypothesis - no adversarial challenge, no convergence gate, **no provenance on the resulting claim**.",
-      "ScholarOS is a **structured research execution platform** - five capabilities delivered as a DAG-executed MCP workflow, not a chatbox. Every output is **bound to source evidence**. Contradiction detection runs across the full corpus, not per-query. Hypothesis critique uses a **bounded Hypothesis / Critic agent loop** with convergence detection - not unconstrained generation. Nine services process research artifacts with rule-based, schema-defined, reproducible logic. **No service imports another service** - all data flows through the orchestrator via MCP tool invocations.",
-      "**MCP Orchestrator** executes workflows as DAGs with pause/resume, session management, and full trace logging. Five capabilities: **Literature Mapping** (HDBSCAN clustering + LLM cluster labeling + paper ranking), **Contradiction & Consensus** (claim extraction → metric normalization → polarity/value divergence detection → Belief Engine confidence assignment), **Hypothesis & Critique** (bounded Hypothesis/Critic loop, max 5 iterations, grounded to source claim identifiers), **Multimodal Evidence Extraction** (tables, figures, metrics from PDFs → structured output), **Proposal Assistant** (validated hypotheses → Markdown/LaTeX with citation assembly). Data layer: **Chroma** (vector), **SQLite** (metadata), **Redis** (session). Local inference: **Ollama qwen2.5:32b**, **sentence-transformers all-MiniLM-L6-v2**.",
-      "**100% determinism rate** - identical inputs produce identical outputs; no stochastic processes in the deterministic pipeline. Nine independently testable services with no global state and no inter-service imports - all data flows through the orchestrator, **eliminating hidden state**. Agent reasoning is **explicitly bounded**: max 5 iterations per hypothesis loop with required grounding to source claim identifiers. March 2026 validation: **5,479 chunks processed**, **180 claims extracted**, **76 contradictions detected**.",
-      "**Five research output artifacts** - ClusterMap (JSON), Contradiction Report (JSON), Validated Hypotheses (JSON), Research Proposals (Markdown • LaTeX), Extracted Evidence (CSV • JSON). **Fully local and self-hostable** - no external API dependency for any deterministic pipeline stage.",
-    ],
-    github: "https://github.com/Deepanshu07-eng",
   },
 ];
 
-const PROJECT_DETAIL_PATHS: Partial<Record<string, string>> = {
-  "ashwingupta-dev": "/work/ashwingupta-dev",
-  pageindexollama: "/work/pageindexollama",
-  "azure-infra-docs": "/work/azure-infra-docs",
-  "skill-recommendation-engine": "/work/skill-recommendation-engine",
-};
-
-const SUMMARY_LABELS = ["Problem", "System", "Design", "Outcome"];
-
-// Featured card for HSBC / Controla
-function FeaturedCard({
-  p,
-  caseStudyHref,
-  caseStudyLabel,
+function ProjectModal({
+  project,
+  onClose,
 }: {
-  p: Project;
-  caseStudyHref: string;
-  caseStudyLabel: string;
+  project: Project | null;
+  onClose: () => void;
 }) {
-  const [hovered, setHovered] = useState(false);
-  const isMobile = useIsMobile();
-
-  const isHSBC = p.slug === "hsbc-voice";
-  const accentColor = isHSBC ? "#22d3ee" : "#e8e0d0";
-  const accentBorder = isHSBC
-    ? "rgba(34,211,238,0.4)"
-    : "rgba(232,224,208,0.25)";
+  if (!project) return null;
 
   return (
-    <m.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <div
+      onClick={onClose}
       style={{
-        padding: isMobile ? "1.6rem" : "2.4rem",
-        borderRadius: "8px",
-        border: `1px solid ${hovered ? accentBorder : "rgba(255,255,255,0.12)"}`,
-        background: "transparent",
-        transition: "border-color 0.25s",
-        position: "relative",
-        overflow: "hidden",
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        background: "rgba(0,0,0,0.78)",
+        backdropFilter: "blur(14px)",
+        display: "grid",
+        placeItems: "center",
+        padding: "2rem",
       }}
     >
-      {/* Accent top line */}
-      <div
+      <m.div
+        initial={{ opacity: 0, scale: 0.94, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        onClick={(e) => e.stopPropagation()}
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "2px",
-          background: accentColor,
-          opacity: hovered ? 0.7 : 0.3,
-          transition: "opacity 0.25s",
-        }}
-      />
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-          gap: isMobile ? "1.5rem" : "3vw",
-          alignItems: "start",
+          width: "min(880px, 94vw)",
+          maxHeight: "86vh",
+          overflow: "auto",
+          borderRadius: "18px",
+          border: `1px solid ${project.color}88`,
+          background:
+            "linear-gradient(135deg, rgba(20,20,20,0.96), rgba(5,5,5,0.98))",
+          boxShadow: `0 0 70px ${project.color}35`,
+          padding: "1.6rem",
         }}
       >
-        {/* Left: header info */}
-        <div>
-          {/* Company + status */}
+        <button
+          onClick={onClose}
+          style={{
+            float: "right",
+            width: "36px",
+            height: "36px",
+            borderRadius: "50%",
+            border: `1px solid ${project.color}88`,
+            background: `${project.color}18`,
+            color: "#fff",
+            cursor: "pointer",
+          }}
+        >
+          ×
+        </button>
+
+        <p
+          style={{
+            fontFamily: FONT_MONO,
+            fontSize: "0.62rem",
+            letterSpacing: "0.18em",
+            color: project.color,
+            textTransform: "uppercase",
+            margin: "0 0 0.8rem",
+          }}
+        >
+          {project.category} • {project.status}
+        </p>
+
+        <h3
+          style={{
+            fontFamily: FONT_SERIF,
+            fontSize: "clamp(2rem, 5vw, 3.4rem)",
+            color: "#fafaf8",
+            margin: "0 0 1rem",
+            lineHeight: 1.05,
+          }}
+        >
+          {project.title}
+        </h3>
+
+        <p
+          style={{
+            fontFamily: FONT_SANS,
+            color: "rgba(255,255,255,0.7)",
+            lineHeight: 1.75,
+            marginBottom: "1.4rem",
+          }}
+        >
+          {project.summary}
+        </p>
+
+        {project.details.map((d, i) => (
+          <p
+            key={i}
+            style={{
+              fontFamily: FONT_SANS,
+              color: "rgba(255,255,255,0.58)",
+              lineHeight: 1.65,
+              margin: "0.45rem 0",
+            }}
+          >
+            <span style={{ color: project.color }}>0{i + 1}.</span> {d}
+          </p>
+        ))}
+
+        {project.subProjects && (
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "10px",
-              marginBottom: "1.2rem",
+              marginTop: "1.4rem",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "0.75rem",
             }}
           >
-            <img
-              src={p.logo}
-              alt={p.company}
-              loading="lazy"
-              decoding="async"
+            {project.subProjects.map((s) => (
+              <div
+                key={s.title}
+                style={{
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "10px",
+                  padding: "1rem",
+                  background: "rgba(255,255,255,0.03)",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: FONT_SANS,
+                    color: "#fafaf8",
+                    margin: "0 0 0.4rem",
+                    fontWeight: 700,
+                  }}
+                >
+                  {s.title}
+                </p>
+                <span
+                  style={{
+                    fontFamily: FONT_MONO,
+                    fontSize: "0.55rem",
+                    color: project.color,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {s.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div style={{ display: "flex", gap: "0.8rem", marginTop: "1.6rem" }}>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
               style={{
-                height: `${p.logoHeight}px`,
-                width: "auto",
-                maxWidth: "60px",
-                objectFit: "contain",
-                opacity: 0.85,
-              }}
-              onError={(e) =>
-                ((e.currentTarget as HTMLImageElement).style.display = "none")
-              }
-            />
-            <span
-              style={{
+                color: "#000",
+                background: project.color,
+                padding: "0.7rem 1rem",
+                borderRadius: "8px",
                 fontFamily: FONT_MONO,
                 fontSize: "0.62rem",
-                letterSpacing: "0.09em",
-                color: "rgba(255,255,255,0.35)",
+                textDecoration: "none",
               }}
             >
-              {p.company}
-            </span>
-            <span
+              Live Demo ↗
+            </a>
+          )}
+
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
               style={{
+                color: project.color,
+                border: `1px solid ${project.color}88`,
+                padding: "0.7rem 1rem",
+                borderRadius: "8px",
                 fontFamily: FONT_MONO,
-                fontSize: "0.52rem",
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                padding: "2px 8px",
-                borderRadius: "20px",
-                color: accentColor,
-                border: `1px solid ${accentBorder}`,
-                background: isHSBC
-                  ? "rgba(34,211,238,0.06)"
-                  : "rgba(232,224,208,0.04)",
+                fontSize: "0.62rem",
+                textDecoration: "none",
               }}
             >
-              {p.status}
-            </span>
-          </div>
-
-          <h3
-            style={{
-              fontFamily: FONT_SERIF,
-              fontWeight: 800,
-              fontSize: isMobile ? "1.4rem" : "1.7rem",
-              color: "#fafaf8",
-              lineHeight: 1.2,
-              margin: "0 0 1rem",
-              letterSpacing: "0.02em",
-            }}
-          >
-            {p.title}
-          </h3>
-
-          <p
-            style={{
-              fontFamily: FONT_MONO,
-              fontSize: "0.62rem",
-              letterSpacing: "0.06em",
-              color: accentColor,
-              opacity: 0.9,
-              marginBottom: "1.5rem",
-              lineHeight: 1.6,
-            }}
-          >
-            {p.impact}
-          </p>
-
-          {/* CTA link */}
-          <a
-            href={caseStudyHref}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              fontFamily: FONT_MONO,
-              fontSize: "0.62rem",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: accentColor,
-              textDecoration: "none",
-              border: `1px solid ${accentBorder}`,
-              borderRadius: "4px",
-              padding: "8px 14px",
-              transition: "background 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = isHSBC
-                ? "rgba(34,211,238,0.08)"
-                : "rgba(232,224,208,0.06)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "transparent";
-            }}
-          >
-            {caseStudyLabel} →
-          </a>
+              GitHub ↗
+            </a>
+          )}
         </div>
-
-        {/* Right: summary bullets */}
-        <div
-          style={{ display: "flex", flexDirection: "column", gap: "0.7rem" }}
-        >
-          {p.summary.slice(0, 3).map((bullet, i) => (
-            <div
-              key={i}
-              style={{
-                display: "flex",
-                gap: "0.65rem",
-                alignItems: "flex-start",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: FONT_MONO,
-                  fontSize: "0.58rem",
-                  color: "rgba(255,255,255,0.2)",
-                  marginTop: "4px",
-                  flexShrink: 0,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  width: "70px",
-                }}
-              >
-                {SUMMARY_LABELS[i]}
-              </span>
-              <span
-                style={{
-                  fontFamily: FONT_SANS,
-                  fontSize: "0.85rem",
-                  lineHeight: 1.65,
-                  color: "rgba(255,255,255,0.55)",
-                  textAlign: "justify",
-                  textJustify: "inter-word",
-                }}
-              >
-                {renderBullet(bullet)}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Tags */}
-      <div
-        style={{
-          display: "flex",
-          gap: "5px",
-          flexWrap: "wrap",
-          marginTop: "1.5rem",
-          paddingTop: "1.2rem",
-          borderTop: "1px solid rgba(255,255,255,0.05)",
-        }}
-      >
-        {p.tags.map((t) => (
-          <span
-            key={t}
-            style={{
-              fontFamily: FONT_MONO,
-              fontSize: "0.52rem",
-              letterSpacing: "0.07em",
-              color: "rgba(255,255,255,0.35)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              borderRadius: "2px",
-              padding: "3px 7px",
-            }}
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-    </m.div>
+      </m.div>
+    </div>
   );
 }
 
-// Compact secondary card
-function ProjectCard({ p, index }: { p: Project; index: number }) {
+function ProjectCard({
+  project,
+  onOpen,
+}: {
+  project: Project;
+  onOpen: (project: Project) => void;
+}) {
   const [hovered, setHovered] = useState(false);
-  const [revealed, setRevealed] = useState(false);
-  const isMobile = useIsMobile();
-  const isDesktop = useIsDesktop();
-  const showOutcome = hovered || revealed;
-
-  const isAward = p.status === "Best Outgoing Project • 2022–23";
-  const statusColor = isAward
-    ? "#facc15"
-    : p.status === "Client Delivery"
-      ? "#22d3ee"
-      : p.devStatus === "completed"
-        ? "#4ade80"
-        : "#facc15";
-  const statusBorder = isAward
-    ? "rgba(250,204,21,0.35)"
-    : p.status === "Client Delivery"
-      ? "rgba(34,211,238,0.4)"
-      : p.devStatus === "completed"
-        ? "rgba(74,222,128,0.35)"
-        : "rgba(250,204,21,0.35)";
-  const statusBg = isAward
-    ? "rgba(250,204,21,0.06)"
-    : p.status === "Client Delivery"
-      ? "rgba(34,211,238,0.08)"
-      : p.devStatus === "completed"
-        ? "rgba(74,222,128,0.06)"
-        : "rgba(250,204,21,0.06)";
 
   return (
     <m.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -4, scale: 1.015 }}
-      transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={() => {
-        if (isMobile && !revealed) {
-          setRevealed(true);
-          return;
-        }
-        window.location.href =
-          PROJECT_DETAIL_PATHS[p.slug] ?? `/projects/${p.slug}`;
-      }}
+      onClick={() => onOpen(project)}
+      whileHover={{ y: -8, scale: 1.015 }}
+      transition={{ duration: 0.35 }}
       style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        padding: "1.4rem",
-        borderRadius: "8px",
-        border: `1px solid ${hovered ? "rgba(255,255,255,0.28)" : "rgba(255,255,255,0.1)"}`,
-        background: "transparent",
-        transition: "border-color 0.2s",
+        position: "relative",
+        minHeight: "310px",
+        padding: "1.5rem",
+        borderRadius: "14px",
         cursor: "pointer",
+        overflow: "hidden",
+        border: `1px solid ${
+          hovered ? project.color : "rgba(255,255,255,0.12)"
+        }`,
+        background: hovered
+          ? `linear-gradient(135deg, ${project.color}18, rgba(255,255,255,0.025))`
+          : "rgba(255,255,255,0.015)",
+        boxShadow: hovered
+          ? `0 0 45px ${project.color}35, inset 0 0 35px ${project.color}10`
+          : "none",
       }}
     >
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.85rem",
-          overflow: "hidden",
-          maxHeight: showOutcome ? "1000px" : "14rem",
-          minHeight: showOutcome ? undefined : "14rem",
-          transition: "max-height 0.5s cubic-bezier(0.76, 0, 0.24, 1)",
-          ...(!showOutcome
-            ? {
-                WebkitMaskImage:
-                  "linear-gradient(to bottom, black 75%, transparent 100%)",
-                maskImage:
-                  "linear-gradient(to bottom, black 75%, transparent 100%)",
-              }
-            : {}),
+          position: "absolute",
+          inset: 0,
+          background: `radial-gradient(circle at top right, ${project.color}22, transparent 42%)`,
+          opacity: hovered ? 1 : 0.25,
+          transition: "opacity 0.3s",
+          pointerEvents: "none",
         }}
-      >
-        {/* Title + badge row */}
+      />
+
+      <div style={{ position: "relative", zIndex: 1 }}>
         <div
           style={{
             display: "flex",
-            flexDirection: isDesktop ? "row" : "column",
-            alignItems: "flex-start",
             justifyContent: "space-between",
-            gap: "0.5rem",
+            marginBottom: "1.3rem",
           }}
         >
-          <p
-            style={{
-              fontFamily: FONT_SERIF,
-              fontWeight: 800,
-              fontSize: "1.35rem",
-              color: "#fafaf8",
-              lineHeight: 1.2,
-              margin: 0,
-              flex: 1,
-            }}
-          >
-            {p.title}
-          </p>
           <span
             style={{
               fontFamily: FONT_MONO,
-              fontSize: "0.5rem",
-              letterSpacing: "0.12em",
+              color: project.color,
+              fontSize: "0.7rem",
+              letterSpacing: "0.18em",
+            }}
+          >
+            {project.index}
+          </span>
+          <span
+            style={{
+              fontFamily: FONT_MONO,
+              fontSize: "0.52rem",
+              color: project.color,
+              border: `1px solid ${project.color}77`,
+              borderRadius: "999px",
+              padding: "4px 9px",
               textTransform: "uppercase",
-              whiteSpace: "nowrap",
-              padding: "3px 8px",
-              borderRadius: "20px",
-              flexShrink: 0,
-              alignSelf: "flex-start",
-              color: statusColor,
-              border: `1px solid ${statusBorder}`,
-              background: statusBg,
             }}
           >
-            {p.status}
+            {project.status}
           </span>
         </div>
 
-        {/* Company */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <img
-            src={p.logo}
-            alt={p.company}
-            loading="lazy"
-            decoding="async"
-            style={{
-              height: `${Math.min(p.logoHeight, 32)}px`,
-              width: "auto",
-              maxWidth: "56px",
-              objectFit: "contain",
-              opacity: 0.8,
-            }}
-            onError={(e) =>
-              ((e.currentTarget as HTMLImageElement).style.display = "none")
-            }
-          />
-          <span
-            style={{
-              fontFamily: FONT_MONO,
-              fontSize: "0.62rem",
-              letterSpacing: "0.09em",
-              color: "rgba(255,255,255,0.3)",
-            }}
-          >
-            {p.company}
-          </span>
-        </div>
-
-        <div style={{ height: "1px", background: "rgba(255,255,255,0.05)" }} />
-
-        {/* All bullets - always rendered; mask fades last bullet until hover */}
-        <div
-          style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-        >
-          {p.summary.map((bullet, i) => (
-            <div
-              key={i}
-              style={{
-                display: "flex",
-                gap: "0.55rem",
-                alignItems: "flex-start",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: FONT_MONO,
-                  fontSize: "0.56rem",
-                  color: "rgba(255,255,255,0.2)",
-                  marginTop: "3px",
-                  flexShrink: 0,
-                  letterSpacing: "0.07em",
-                  textTransform: "uppercase",
-                  width: "58px",
-                }}
-              >
-                {SUMMARY_LABELS[i]}
-              </span>
-              <span
-                style={{
-                  fontFamily: FONT_SANS,
-                  fontSize: "0.82rem",
-                  lineHeight: 1.55,
-                  color: "rgba(255,255,255,0.5)",
-                  textAlign: "justify",
-                  textJustify: "inter-word",
-                }}
-              >
-                {renderBullet(bullet)}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Arrow - outside masked div, always fully visible */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginTop: "auto",
-        }}
-      >
-        <span
+        <p
           style={{
             fontFamily: FONT_MONO,
-            fontSize: "0.65rem",
-            color: hovered ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.3)",
-            transition: "color 0.2s",
+            fontSize: "0.58rem",
+            color: "rgba(255,255,255,0.38)",
+            textTransform: "uppercase",
+            letterSpacing: "0.16em",
+            margin: "0 0 0.8rem",
           }}
         >
-          ↗
-        </span>
+          {project.category}
+        </p>
+
+        <h3
+          style={{
+            fontFamily: FONT_SERIF,
+            fontSize: "1.55rem",
+            lineHeight: 1.15,
+            color: hovered ? project.color : "#fafaf8",
+            margin: "0 0 1rem",
+            transition: "color 0.3s",
+          }}
+        >
+          {project.title}
+        </h3>
+
+        <p
+          style={{
+            fontFamily: FONT_SANS,
+            fontSize: "0.9rem",
+            lineHeight: 1.7,
+            color: "rgba(255,255,255,0.62)",
+            margin: 0,
+          }}
+        >
+          {project.summary}
+        </p>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0.45rem",
+            marginTop: "1.3rem",
+          }}
+        >
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              style={{
+                fontFamily: FONT_MONO,
+                fontSize: "0.52rem",
+                color: hovered ? project.color : "rgba(255,255,255,0.38)",
+                border: `1px solid ${
+                  hovered ? `${project.color}66` : "rgba(255,255,255,0.08)"
+                }`,
+                padding: "4px 7px",
+                borderRadius: "4px",
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <p
+          style={{
+            marginTop: "1.3rem",
+            fontFamily: FONT_MONO,
+            fontSize: "0.6rem",
+            color: project.color,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+          }}
+        >
+          View details ↗
+        </p>
       </div>
     </m.div>
   );
@@ -807,112 +508,85 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
 
 export function Projects() {
   const isMobile = useIsMobile();
-  const isTablet = useIsTablet();
-
-  const secondaryProjects = projects.filter(
-    (p) =>
-      p.slug !== "hsbc-voice" &&
-      p.slug !== "here-app" &&
-      p.slug !== "pinns" &&
-      p.slug !== "scholaros",
-  );
-
-  const orderedSecondary = [...secondaryProjects].sort((a, b) => {
-    const aIsAward = a.status === "Best Outgoing Project • 2022–23";
-    const bIsAward = b.status === "Best Outgoing Project • 2022–23";
-    if (aIsAward === bIsAward) return 0;
-    return aIsAward ? 1 : -1;
-  });
-
-  const maxPerRow = isMobile ? 1 : isTablet ? 2 : 3;
-  const totalCount = researchItems.length + orderedSecondary.length;
-  const rows = useEqualRows(totalCount, maxPerRow);
+  const [selected, setSelected] = useState<Project | null>(null);
 
   return (
-    <section
-      id="projects"
-      style={{
-        position: "relative",
-        background: "transparent",
-        padding: isMobile ? "5rem 4vw" : "4rem 0",
-      }}
-    >
-      <div
+    <>
+      <section
+        id="projects"
         style={{
-          display: "flex",
-          flexDirection: "column",
+          position: "relative",
+          background: "transparent",
+          padding: isMobile ? "5rem 4vw" : "5rem 6vw",
         }}
       >
-        {/* Header */}
-        <div style={isMobile ? {} : { padding: "0.85rem 6vw 2rem" }}>
-          <div
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            marginBottom: "2rem",
+          }}
+        >
+          <span
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-              marginBottom: "2rem",
+              fontFamily: FONT_MONO,
+              fontSize: "0.62rem",
+              letterSpacing: "0.2em",
+              color: "rgba(255,255,255,0.4)",
+              textTransform: "uppercase",
             }}
           >
-            <span
-              style={{
-                fontFamily: FONT_MONO,
-                fontSize: "0.62rem",
-                letterSpacing: "0.2em",
-                color: "rgba(255,255,255,0.4)",
-                textTransform: "uppercase",
-              }}
-            >
-              Research & Systems
-            </span>
-            <div
-              style={{
-                flex: 1,
-                height: "1px",
-                background: "rgba(255,255,255,0.07)",
-              }}
-            />
-          </div>
-
-          <div style={{ overflow: "hidden" }}>
-            <m.h2
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-              style={{
-                fontFamily: FONT_SERIF,
-                fontSize: isMobile
-                  ? "clamp(1.8rem, 7vw, 4rem)"
-                  : "clamp(2.6rem, 4.5vw, 4rem)",
-                fontWeight: 800,
-                lineHeight: 1.1,
-                letterSpacing: "0.02em",
-                color: "#fafaf8",
-                margin: 0,
-              }}
-            >
-              Systems that had to hold.
-            </m.h2>
-          </div>
-        </div>
-
-        {/* Content strip */}
-        <div style={{ padding: isMobile ? "2rem 0 0" : "1.5rem 6vw 4rem" }}>
-          <EqualGridRenderer
-            rows={rows}
-            align="stretch"
-            renderCard={(idx) =>
-              idx < researchItems.length ? (
-                <ResearchCard item={researchItems[idx]} />
-              ) : (
-                <ProjectCard
-                  p={orderedSecondary[idx - researchItems.length]}
-                  index={idx}
-                />
-              )
-            }
+            Projects
+          </span>
+          <div
+            style={{
+              flex: 1,
+              height: "1px",
+              background: "rgba(255,255,255,0.07)",
+            }}
           />
         </div>
-      </div>
-    </section>
+
+        <m.h2
+          initial={{ y: "100%" }}
+          whileInView={{ y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+          style={{
+            fontFamily: FONT_SERIF,
+            fontSize: isMobile
+              ? "clamp(2rem, 10vw, 4rem)"
+              : "clamp(3rem, 5.5vw, 5.5rem)",
+            fontWeight: 800,
+            lineHeight: 1.05,
+            color: "#fafaf8",
+            margin: "0 0 3rem",
+          }}
+        >
+          Practical projects, clean execution.
+        </m.h2>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile
+              ? "1fr"
+              : "repeat(auto-fit, minmax(310px, 1fr))",
+            gap: "1.25rem",
+          }}
+        >
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              onOpen={setSelected}
+            />
+          ))}
+        </div>
+      </section>
+
+      <ProjectModal project={selected} onClose={() => setSelected(null)} />
+    </>
   );
 }

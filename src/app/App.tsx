@@ -4,7 +4,6 @@ import { HologramInterface } from "./components/HologramInterface";
 import { About } from "./components/About";
 import { ExperienceTimeline } from "./components/ExperienceTimeline";
 import { Impact } from "./components/Impact";
-import { Featured } from "./components/Featured";
 import { Projects } from "./components/Projects";
 import { Recommendations } from "./components/Recommendations";
 import { Skills } from "./components/Skills";
@@ -107,7 +106,6 @@ export default function App() {
           <About />
           <ExperienceTimeline />
           <Impact />
-          <Featured />
           <Projects />
           <Recommendations />
           <Skills />
