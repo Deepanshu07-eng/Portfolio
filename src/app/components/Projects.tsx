@@ -564,7 +564,7 @@ export function Projects() {
             margin: "0 0 3rem",
           }}
         >
-          Practical projects, clean execution.
+          Practical projects, clean executions.
         </m.h2>
 
         <div
