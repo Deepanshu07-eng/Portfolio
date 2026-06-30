@@ -187,11 +187,10 @@ export default function App() {
                   lineHeight: 1.3,
                 }}
               >
-                Somewhere between the hero and here, you decided to keep going.
+                If you've come this far, you might enjoy seeing what I've built.
                 <br />
                 <br />
-                Thank you for taking the time to know me a little more than you
-                already did.
+                I hope something here inspires a conversation, a collaboration, or simply leaves a good impression. THANK YOU
               </span>
               <span
                 style={{
@@ -202,18 +201,8 @@ export default function App() {
                   lineHeight: 1.6,
                 }}
               >
-                Want to check out my articles next?{isMobile ? <br /> : " "}
-                <a
-                  href="/articles"
-                  style={{
-                    color: "#4ade80",
-                    textDecoration: "none",
-                    borderBottom: "1px solid rgba(74,222,128,0.4)",
-                    paddingBottom: "1px",
-                  }}
-                >
-                  Read them here.
-                </a>
+      
+                
               </span>
 
               {/* Countdown ring */}
