@@ -37,7 +37,7 @@ const credentials = [
     date: "2026",
     tag: "Intermediate SQL",
     color: "#00EA64",
-    certificateUrl: "/certificates/hackerrank-sql-intermediate.pdf",
+    certificateUrl: "/certificates/sqlinterm.jpg",
     text: "Demonstrated intermediate SQL knowledge including subqueries, complex joins, window functions, and data manipulation.",
   },
   {
@@ -48,7 +48,7 @@ const credentials = [
     date: "2026",
     tag: "SQL Foundations",
     color: "#00EA64",
-    certificateUrl: "/certificates/hackerrank-sql-basic.pdf",
+    certificateUrl: "/certificates/sqlbasic.jpg",
     text: "Validated core SQL skills including queries, filtering, joins, aggregation, and structured data retrieval.",
   },
   {
@@ -59,7 +59,7 @@ const credentials = [
     date: "2025",
     tag: "Academic Excellence",
     color: "#C084FC",
-    certificateUrl: "/certificates/coding-blocks-excellence.pdf",
+    certificateUrl: "/certificates/cppexcellence.jpg",
     text: "Awarded for scoring 92% in assignments and showing excellent performance throughout the DSA course.",
   },
   
@@ -72,7 +72,7 @@ const credentials = [
     date: "2025",
     tag: "C++ DSA",
     color: "#FF6B35",
-    certificateUrl: "/certificates/coding-blocks-dsa.pdf",
+    certificateUrl: "/certificates/cppdsa.png",
     text: "Completed DSA training in C++ covering arrays, recursion, linked lists, trees, graphs, and problem-solving patterns.",
   },
   
@@ -84,7 +84,7 @@ const credentials = [
     date: "2025",
     tag: "Team Innovation",
     color: "#38BDF8",
-    certificateUrl: "/certificates/hackshastra.pdf",
+    certificateUrl: "/certificates/hackshashtra.jpg",
     text: "Participated in Hackshastra Hackathon and gained hands-on experience in team collaboration, ideation, and rapid project building.",
   },
 ];
@@ -367,22 +367,42 @@ function CertificateModal({
         </div>
 
         <div
-          style={{
-            height: "min(70vh, 620px)",
-            background: "rgba(255,255,255,0.03)",
-          }}
-        >
-          <iframe
-            src={selected.certificateUrl}
-            title={selected.name}
-            style={{
-              width: "100%",
-              height: "100%",
-              border: 0,
-              background: "#111",
-            }}
-          />
-        </div>
+  style={{
+    height: "min(70vh, 620px)",
+    background: "rgba(255,255,255,0.03)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "1rem",
+    overflow: "hidden",
+  }}
+>
+  {selected.certificateUrl.endsWith(".pdf") ? (
+    <iframe
+      src={selected.certificateUrl}
+      title={selected.name}
+      style={{
+        width: "100%",
+        height: "100%",
+        border: 0,
+        background: "#111",
+      }}
+    />
+  ) : (
+    <img
+      src={selected.certificateUrl}
+      alt={selected.name}
+      style={{
+        maxWidth: "100%",
+        maxHeight: "100%",
+        width: "auto",
+        height: "auto",
+        objectFit: "contain",
+        borderRadius: "12px",
+      }}
+    />
+  )}
+</div>
       </m.div>
     </m.div>
   );
