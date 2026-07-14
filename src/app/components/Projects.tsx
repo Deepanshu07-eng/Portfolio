@@ -60,7 +60,8 @@ export const projects: Project[] = [
       "Designed for admin dashboard and future maps integration.",
     ],
     impact: "Improves transport planning by reducing route confusion, travel time, and fuel usage.",
-    github: "https://github.com/Deepanshu07-eng",
+    github: "https://waypoint-pro.streamlit.app/",
+
   },
   {
     index: "02",
