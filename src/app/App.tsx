@@ -105,7 +105,6 @@ export default function App() {
           <Hero />
           <About />
           <ExperienceTimeline />
-          <Impact />
           <Projects />
           <Recommendations />
           <Skills />

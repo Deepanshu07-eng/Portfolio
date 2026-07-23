@@ -134,8 +134,7 @@ export function Hero() {
     section: string | null;
   }[] = [
     { label: "About", href: "/about", section: "about" },
-    { label: "Experience", href: "/experience", section: "experience" },
-    { label: "Impact", href: "/impact", section: "impact" },
+    { label: "Learning", href: "/experience", section: "experience" },
   ];
 
   const workItems = [
@@ -148,12 +147,12 @@ export function Hero() {
     section: string | null;
   }[] = [
     {
-      label: "Recommendations",
+      label: "Certificates",
       href: "/recommendations",
       section: "recommendations",
     },
     { label: "Stack", href: "/stack", section: "stack" },
-    { label: "Articles", href: "/articles", section: null },
+ 
     { label: "Contact", href: "/contact", section: "contact" },
   ];
 
