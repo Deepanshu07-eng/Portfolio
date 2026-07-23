@@ -64,7 +64,49 @@ export const projects: Project[] = [
 
   },
   {
-    index: "02",
+  index: "02",
+  slug: "ecommerce-sales-analysis",
+  title: "E-Commerce Sales Analysis",
+  category: "Data Analytics Project",
+  company: "Personal Project",
+  status: "Featured",
+  devStatus: "completed",
+  color: "#D90368",
+
+  tags: [
+  "Python",
+  "SQL",
+  "Excel",
+  "Power BI",
+  "Streamlit",
+  "Pandas",
+  "EDA"
+],
+
+  summary:
+  "An end-to-end data analytics project that transforms raw e-commerce sales data into actionable business insights using Python, SQL, Excel, Power BI, and Streamlit.",
+
+  details: [
+  "Performed data cleaning and exploratory data analysis using Python and Pandas.",
+  "Solved real-world business problems using SQL queries.",
+  "Built an interactive Excel dashboard with KPIs and Pivot Tables.",
+  "Designed a Power BI dashboard to visualize sales, customer, and product performance.",
+  "Developed and deployed a Streamlit web application for interactive data exploration."
+],
+
+  bullets: [
+  "Cleaned and analyzed 34,500+ e-commerce sales records.",
+  "Answered business questions using SQL and analytical techniques.",
+  "Created Excel and Power BI dashboards for KPI reporting.",
+  "Built and deployed an interactive Streamlit analytics application."
+],
+impact:
+  "Delivered an end-to-end analytics solution that helps stakeholders monitor KPIs, identify sales trends, understand customer behavior, and support data-driven business decisions.",
+
+  github: "https://github.com/Deepanshu07-eng/E-Commerce-Sales-Analysis",
+},
+  {
+    index: "03",
     slug: "netflix-visualization",
     title: "Real Life Netflix Visualization Project",
     category: "Data Analytics",
