@@ -35,32 +35,32 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  {
+    {
     index: "01",
-    slug: "bus-route-optimization",
-    title: "School / College Bus & Van Route Optimization",
-    category: "Major Project",
-    company: "Academic Project",
+    slug: "customer-retention-analytics",
+    title: "Customer Retention & Growth Analytics",
+    category: "Data Analytics Project",
+    company: "Personal Project",
     status: "Featured",
     devStatus: "in-progress",
-    color: "#22d3ee",
-    tags: ["Python", "SQL", "Route Optimization", "Maps", "Dashboard"],
+    color: "#a855f7",
+    tags: ["Python", "SQL", "Statistics", "Power BI", "Tableau", "Streamlit"],
     summary:
-      "A route optimization system for school and college transport to reduce travel time, fuel usage, and route confusion.",
+      "An end-to-end retention analytics pipeline on e-commerce order data to identify repeat-purchase drivers, churn patterns, and campaign impact.",
     details: [
-      "Manages student pickup points and vehicle routes.",
-      "Optimizes routes using graph-based logic.",
-      "Includes attendance tracking and route reporting.",
-      "Designed for admin dashboard and future maps integration.",
+      "Cleans and merges relational order, customer, and payment data into an analysis-ready dataset.",
+      "Performs SQL-based RFM segmentation and cohort retention analysis using window functions and CTEs.",
+      "Validates findings with hypothesis testing and a simulated A/B test on a retention campaign.",
+      "Delivers insights through Power BI/Tableau dashboards and a Streamlit app.",
     ],
     bullets: [
-      "Manages student pickup points and vehicle routes.",
-      "Optimizes routes using graph-based logic.",
-      "Includes attendance tracking and route reporting.",
-      "Designed for admin dashboard and future maps integration.",
+      "Cleans and merges relational order, customer, and payment data into an analysis-ready dataset.",
+      "Performs SQL-based RFM segmentation and cohort retention analysis using window functions and CTEs.",
+      "Validates findings with hypothesis testing and a simulated A/B test on a retention campaign.",
+      "Delivers insights through Power BI/Tableau dashboards and a Streamlit app.",
     ],
-    impact: "Improves transport planning by reducing route confusion, travel time, and fuel usage.",
-    github: "https://waypoint-pro.streamlit.app/",
+    impact: "Surfaces which customers are likely to churn and whether retention campaigns move the needle on repeat purchases.",
+    github: "",
 
   },
   {
@@ -105,8 +105,36 @@ impact:
 
   github: "https://github.com/Deepanshu07-eng/E-Commerce-Sales-Analysis",
 },
-  {
+{
     index: "03",
+    slug: "bus-route-optimization",
+    title: "School / College Bus & Van Route Optimization",
+    category: "Major Project",
+    company: "Academic Project",
+    status: "Featured",
+    devStatus: "in-progress",
+    color: "#22d3ee",
+    tags: ["Python", "SQL", "Route Optimization", "Maps", "Dashboard"],
+    summary:
+      "A route optimization system for school and college transport to reduce travel time, fuel usage, and route confusion.",
+    details: [
+      "Manages student pickup points and vehicle routes.",
+      "Optimizes routes using graph-based logic.",
+      "Includes attendance tracking and route reporting.",
+      "Designed for admin dashboard and future maps integration.",
+    ],
+    bullets: [
+      "Manages student pickup points and vehicle routes.",
+      "Optimizes routes using graph-based logic.",
+      "Includes attendance tracking and route reporting.",
+      "Designed for admin dashboard and future maps integration.",
+    ],
+    impact: "Improves transport planning by reducing route confusion, travel time, and fuel usage.",
+    github: "https://waypoint-pro.streamlit.app/",
+
+  },
+  {
+    index: "04",
     slug: "netflix-visualization",
     title: "Real Life Netflix Visualization Project",
     category: "Data Analytics",
@@ -134,9 +162,9 @@ impact:
       "https://github.com/Deepanshu07-eng/Python/tree/main/Real%20Life%20NetfliX%20Visualisation%20Project%20(Pandas%2C%20matplotlib)",
   },
   {
-    index: "03",
+    index: "05",
     slug: "air-quality-prediction",
-    title: "Air Quality Prediction ML",
+    title: "Air Quality Prediction",
     category: "Machine Learning",
     company: "Portfolio Project",
     status: "Completed",
@@ -160,7 +188,7 @@ impact:
     impact: "Demonstrates beginner machine learning workflow and prediction logic.",
   },
   {
-    index: "04",
+    index: "06",
     slug: "capstone-project",
     title: "Capstone Project",
     category: "Data Project",
@@ -184,7 +212,7 @@ impact:
     impact: "Represents a complete end-to-end data project workflow.",
   },
   {
-    index: "05",
+    index: "07",
     slug: "password-manager",
     title: "Password Manager Program",
     category: "Python CLI",
@@ -210,9 +238,9 @@ impact:
     impact: "Shows Python fundamentals, file handling, and CLI logic.",
   },
   {
-    index: "06",
+    index: "08",
     slug: "python-small-projects",
-    title: "01 Python Small Projects",
+    title: "Python Small Projects",
     category: "Python Projects",
     company: "Practice Collection",
     status: "Collection",
@@ -236,7 +264,7 @@ impact:
     ],
   },
   {
-    index: "07",
+    index: "09",
     slug: "web-development-projects",
     title: "Web Development Projects",
     category: "Frontend Collection",

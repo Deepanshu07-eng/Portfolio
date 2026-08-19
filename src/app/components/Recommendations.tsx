@@ -26,7 +26,7 @@ const credentials = [
     date: "2026",
     tag: "Python Programming",
     color: "#FFD43B",
-    certificateUrl: "/certificates/freecodecamp-python.pdf",
+    certificateUrl: "/certificates/freecodecamp-python.png",
     text: "Built strong fundamentals in Python, functions, problem solving, data structures, and automation-focused programming.",
   },
   {
